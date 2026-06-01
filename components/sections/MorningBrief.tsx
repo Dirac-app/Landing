@@ -124,8 +124,7 @@ export function MorningBrief() {
 
             <button
               type="button"
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white px-[18px] py-2.5 rounded-lg"
-              style={{ background: "linear-gradient(to right, #F97316, #EA580C)" }}
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-black px-[18px] py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600"
             >
               <Send className="h-3.5 w-3.5" strokeWidth={2} />
               Send

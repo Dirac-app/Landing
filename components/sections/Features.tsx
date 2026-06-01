@@ -1,9 +1,13 @@
+import { ByInstruction } from "@/components/sections/ByInstruction";
+import { VoiceLearning } from "@/components/sections/VoiceLearning";
+import { WhatMatters } from "@/components/sections/WhatMatters";
+
 const features = [
   {
-    label: "Morning Brief",
-    headline: "Wake up to a situation report, not a pile of threads.",
+    label: "What Matters",
+    headline: "Dirac finds what matters.",
     body:
-      "Every morning, Dirac reads your entire inbox and distills it into a structured brief: what's urgent, what can wait, what needs a reply, and what you can ignore. Delivered before 7am.",
+      "38 emails came in overnight. Most don't deserve your attention. Dirac reads every one, weighs sender, thread history, urgency, and your own past behavior — then surfaces only what needs you. The rest is filed, archived, or visible in the background.",
     align: "right",
   },
   {
@@ -14,13 +18,20 @@ const features = [
     align: "left",
   },
   {
-    label: "Bulk Actions",
-    headline: "Clear a week's backlog in three taps.",
+    label: "By Instruction",
+    headline: "Email management as a sentence.",
     body:
-      "Group, archive, defer, delegate. Dirac surfaces patterns across your inbox so you can make decisions at scale — not one email at a time.",
+      'Tell Dirac what you want done — "star anything from investors," "archive every newsletter from last month," "unsubscribe from anything I haven\'t opened in 90 days." It identifies the threads, drafts the action, waits for your one tap to apply.',
     align: "right",
   },
 ];
+
+function FeatureVisual({ label }: { label: string }) {
+  if (label === "What Matters") return <WhatMatters />;
+  if (label === "Voice Learning") return <VoiceLearning />;
+  if (label === "By Instruction") return <ByInstruction />;
+  return <ScreenshotPlaceholder label={label} />;
+}
 
 function ScreenshotPlaceholder({ label }: { label: string }) {
   return (
@@ -67,8 +78,7 @@ export function Features() {
                 </p>
               </div>
 
-              {/* Screenshot placeholder */}
-              <ScreenshotPlaceholder label={feature.label} />
+              <FeatureVisual label={feature.label} />
             </div>
           ))}
         </div>

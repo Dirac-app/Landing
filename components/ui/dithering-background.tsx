@@ -30,7 +30,15 @@ export function DitheringBackground({ variant = "full" }: DitheringBackgroundPro
       aria-hidden
     >
       <Suspense fallback={null}>
-        <div style={{ opacity: 0.02, width: "100%", height: "100%", ...heroMask }}>
+        <div
+          style={{
+            opacity: variant === "hero" ? 0.14 : 0.1,
+            mixBlendMode: "screen",
+            width: "100%",
+            height: "100%",
+            ...heroMask,
+          }}
+        >
           <Dithering
             colorBack="#00000000"
             colorFront="#FFFAE0"
