@@ -32,7 +32,7 @@ export function DitheringBackground({ variant = "full" }: DitheringBackgroundPro
       <Suspense fallback={null}>
         <div
           style={{
-            opacity: variant === "hero" ? 0.14 : 0.1,
+            opacity: variant === "hero" ? 0.08 : 0.06,
             mixBlendMode: "screen",
             width: "100%",
             height: "100%",

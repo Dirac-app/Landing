@@ -149,11 +149,11 @@ export function WaitlistForm() {
   if (step === TOTAL_STEPS) {
     return (
       <div className="flex flex-col gap-4 max-w-[440px]">
-        <div className="flex items-center gap-3 rounded-xl border border-orange-500/20 bg-orange-500/8 px-5 py-4">
-          <div className="flex items-center justify-center w-5 h-5 rounded-full bg-orange-500/20 shrink-0">
-            <Check className="h-3 w-3 text-orange-400" />
+        <div className="flex items-center gap-3 rounded-xl accent-border-subtle bg-accent/8 px-5 py-4" style={{ ["--accent-fill" as string]: "rgba(249, 115, 22, 0.08)" }}>
+          <div className="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20 shrink-0">
+            <Check className="h-3 w-3 text-accent-light" />
           </div>
-          <span className="text-orange-400 text-sm font-medium">
+          <span className="text-accent-light text-sm font-medium">
             You&apos;re on the list. We&apos;ll be in touch.
           </span>
         </div>
@@ -180,7 +180,7 @@ export function WaitlistForm() {
           />
           <button
             onClick={advanceFromEmail}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 px-6 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] whitespace-nowrap"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl btn-accent px-6 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] whitespace-nowrap"
           >
             Get Started
             <ArrowRight className="h-4 w-4" />
@@ -217,9 +217,9 @@ export function WaitlistForm() {
                 width: i < step - 1 ? 20 : i === step - 1 ? 20 : 12,
                 background:
                   i < step - 1
-                    ? "rgba(249,115,22,0.7)"
+                    ? "var(--accent-progress-done)"
                     : i === step - 1
-                    ? "#F97316"
+                    ? "var(--color-accent)"
                     : "rgba(255,255,255,0.12)",
               }}
             />
@@ -274,7 +274,7 @@ export function WaitlistForm() {
         <button
           onClick={advanceOrSubmit}
           disabled={!canAdvance || submitStatus === "loading"}
-          className="inline-flex h-9 items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 px-5 text-sm font-semibold text-black transition-all duration-150 hover:opacity-90 active:scale-[0.98] disabled:opacity-30"
+          className="inline-flex h-9 items-center gap-2 rounded-xl btn-accent px-5 text-sm font-semibold text-black transition-all duration-150 hover:opacity-90 active:scale-[0.98] disabled:opacity-30"
         >
           {submitStatus === "loading" ? (
             <Loader2 className="h-4 w-4 animate-spin" />

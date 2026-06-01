@@ -11,9 +11,10 @@
   --color-surface: rgba(255, 255, 255, 0.03);
   --color-surface-raised: rgba(255, 255, 255, 0.05);
 
-  /* Orange accent */
+  /* Orange accent — unified on #F97316 (orange-500) */
   --color-accent: #F97316;
   --color-accent-deep: #EA580C;
+  --color-accent-light: #FB923C;
   --color-accent-muted: rgba(249, 115, 22, 0.12);
 
   /* Fonts */
@@ -24,6 +25,25 @@
 
 :root {
   color-scheme: dark;
+
+  /* RGB channels for layered glows (500 base + lighter outer fade) */
+  --accent-rgb: 249, 115, 22;
+  --accent-light-rgb: 251, 146, 60;
+
+  /* Solid-tone variants — all derived from orange-500 */
+  --accent-border-subtle: rgba(var(--accent-rgb), 0.2);
+  --accent-border: rgba(var(--accent-rgb), 0.35);
+  --accent-border-strong: rgba(var(--accent-rgb), 0.45);
+  --accent-bg-subtle: rgba(var(--accent-rgb), 0.04);
+  --accent-bg-soft: rgba(var(--accent-rgb), 0.06);
+  --accent-bg-muted: rgba(var(--accent-rgb), 0.12);
+  --accent-bg-faded: rgba(var(--accent-rgb), 0.08);
+  --accent-progress-done: rgba(var(--accent-rgb), 0.7);
+
+  /* Glow shadows — all derived from orange-500 */
+  --accent-shadow-sm: 0 0 24px rgba(var(--accent-rgb), 0.12);
+  --accent-shadow-md: 0 0 32px rgba(var(--accent-rgb), 0.12);
+  --accent-shadow-focus: 0 0 0 1px rgba(var(--accent-rgb), 0.2), 0 0 20px rgba(var(--accent-rgb), 0.1);
 }
 
 * {
@@ -43,25 +63,196 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utility: orange gradient text */
+/* Gradient text */
+.text-gradient-accent,
 .text-gradient-orange {
-  background: linear-gradient(135deg, #F97316, #EA580C);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Utility: orange gradient border button */
+/* Primary CTA button */
+.btn-accent,
 .btn-orange {
-  background: linear-gradient(135deg, #F97316, #EA580C);
+  background: linear-gradient(to right, var(--color-accent), var(--color-accent-deep));
   color: #000000;
   font-weight: 600;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+.btn-accent:hover,
 .btn-orange:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+/* ── Accent gradient borders (#F97316 → lighter #FB923C) ── */
+
+.accent-border-subtle,
+.accent-border-default,
+.accent-border-strong,
+.accent-border-outline {
+  --accent-fill: #181714;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.accent-border-subtle {
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.3) 0%,
+      rgba(var(--accent-light-rgb), 0.14) 100%
+    ) border-box;
+}
+
+.accent-border-default {
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.42) 0%,
+      rgba(var(--accent-light-rgb), 0.22) 100%
+    ) border-box;
+}
+
+.accent-border-strong {
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.55) 0%,
+      rgba(var(--accent-light-rgb), 0.32) 100%
+    ) border-box;
+}
+
+/* Outline on transparent / nav backgrounds */
+.accent-border-outline {
+  --accent-fill: transparent;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.45) 0%,
+      rgba(var(--accent-light-rgb), 0.25) 100%
+    ) border-box;
+}
+
+.accent-border-outline:hover {
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.62) 0%,
+      rgba(var(--accent-light-rgb), 0.38) 100%
+    ) border-box;
+}
+
+/* Solid-tone fallback for dashed / split borders */
+.border-accent-dashed {
+  border-color: var(--accent-border-strong);
+}
+
+/* Subtle tinted surface — solid border, no glow */
+.accent-surface {
+  --accent-fill: rgba(var(--accent-rgb), 0.04);
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.3) 0%,
+      rgba(var(--accent-light-rgb), 0.14) 100%
+    ) border-box;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Flat tint + gradient border (no bg gradient wash) */
+.accent-surface-soft {
+  --accent-fill: var(--accent-bg-subtle);
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.32) 0%,
+      rgba(var(--accent-light-rgb), 0.16) 100%
+    ) border-box;
+}
+
+/* Glow-only utilities (pair with accent-border-* classes) */
+.accent-shadow-sm {
+  box-shadow: var(--accent-shadow-sm);
+}
+
+.accent-shadow-md {
+  box-shadow: var(--accent-shadow-md);
+}
+
+.accent-shadow-focus {
+  box-shadow: var(--accent-shadow-focus);
+}
+
+/* Featured card — gradient border + layered glow */
+.accent-glow {
+  --accent-fill: #181714;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.42) 0%,
+      rgba(var(--accent-light-rgb), 0.22) 100%
+    ) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.1),
+    0 0 24px rgba(var(--accent-rgb), 0.1),
+    0 0 48px rgba(var(--accent-rgb), 0.05);
+}
+
+.accent-glow-lg {
+  --accent-fill: #181714;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.42) 0%,
+      rgba(var(--accent-light-rgb), 0.22) 100%
+    ) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.08),
+    0 0 32px rgba(var(--accent-rgb), 0.1),
+    0 0 64px rgba(var(--accent-rgb), 0.04);
+}
+
+/* Focus / active input — tighter, brighter border gradient + glow */
+.accent-glow-focus {
+  --accent-fill: #0F0E0C;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) padding-box,
+    linear-gradient(
+      160deg,
+      rgba(var(--accent-rgb), 0.58) 0%,
+      rgba(var(--accent-light-rgb), 0.34) 100%
+    ) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.18),
+    0 0 20px rgba(var(--accent-rgb), 0.1),
+    0 0 40px rgba(var(--accent-rgb), 0.05);
 }
 
 /* Screenshot placeholder styling */

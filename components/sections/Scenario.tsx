@@ -1,3 +1,5 @@
+import { SectionEyebrow } from "@/components/ui/section-eyebrow";
+
 export function Scenario() {
   const without = [
     { time: "6:58am", text: "Alarm goes off." },
@@ -20,10 +22,16 @@ export function Scenario() {
   return (
     <section className="py-28 md:py-36" id="scenario">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section label */}
-        <p className="text-xs text-white/30 uppercase tracking-widest font-medium mb-6 pl-1">
-          The 7am scenario
-        </p>
+        <SectionEyebrow className="mb-6">The 7am scenario</SectionEyebrow>
+
+        <h2
+          className="text-3xl md:text-4xl lg:text-[44px] font-semibold text-white leading-tight tracking-tight mb-14 md:mb-16 max-w-3xl"
+          style={{ fontFamily: "var(--font-space-grotesk)" }}
+        >
+          The same inbox.
+          <br />
+          <span className="text-white/35">Two very different mornings.</span>
+        </h2>
 
         <div className="grid md:grid-cols-2 gap-0 md:gap-0">
           {/* Without Dirac */}
@@ -68,7 +76,7 @@ export function Scenario() {
                     <>
                       <span
                         className={`text-xs font-mono pt-0.5 w-12 shrink-0 text-right ${
-                          item.accent ? "text-orange-500" : "text-white/35"
+                          item.accent ? "text-accent" : "text-white/35"
                         }`}
                       >
                         {item.time}
@@ -76,7 +84,7 @@ export function Scenario() {
                       <p
                         className={`text-sm leading-relaxed font-medium ${
                           item.accent
-                            ? "text-gradient-orange text-base font-semibold"
+                            ? "text-gradient-accent text-base font-semibold"
                             : "text-white/70"
                         }`}
                       >

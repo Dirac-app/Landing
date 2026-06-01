@@ -1,3 +1,5 @@
+import { SectionEyebrow } from "@/components/ui/section-eyebrow";
+
 type RowData = {
   label: string;
   gmail: string;
@@ -40,14 +42,21 @@ const rows: RowData[] = [
 
 export function Comparison() {
   return (
-    <section className="py-24 md:py-36 border-t border-white/5">
+    <section className="py-24 md:py-36" id="comparison">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-xs text-white/30 uppercase tracking-widest font-medium mb-6 pl-1">
-          Comparison
-        </p>
+        <SectionEyebrow className="mb-6">Comparison</SectionEyebrow>
 
-        <div className="overflow-x-auto -mx-6 px-6">
-          <table className="w-full min-w-[600px] border-collapse mt-12">
+        <h2
+          className="text-3xl md:text-4xl lg:text-[44px] font-semibold text-white leading-tight tracking-tight mb-12 md:mb-14 max-w-3xl"
+          style={{ fontFamily: "var(--font-space-grotesk)" }}
+        >
+          Not a faster inbox.
+          <br />
+          <span className="text-white/35">A different job entirely.</span>
+        </h2>
+
+        <div className="overflow-x-auto -mx-6 px-6 rounded-xl border border-white/[0.06] bg-black/40 p-1 md:p-0 md:border-0 md:bg-transparent">
+          <table className="w-full min-w-[600px] border-collapse">
             <thead>
               <tr>
                 <th className="text-left pb-5 pr-8 w-[22%]" />
@@ -60,12 +69,12 @@ export function Comparison() {
                 <th className="text-left pb-5 w-[26%]">
                   <div className="inline-flex items-center gap-2">
                     <span
-                      className="text-sm font-semibold text-orange-400"
+                      className="text-sm font-semibold text-accent"
                       style={{ fontFamily: "var(--font-space-grotesk)" }}
                     >
                       Dirac
                     </span>
-                    <span className="text-[10px] text-orange-500/60 border border-orange-500/20 rounded-full px-2 py-0.5 font-medium">
+                    <span className="text-[10px] text-accent/60 accent-border-subtle rounded-full px-2 py-0.5 font-medium" style={{ ["--accent-fill" as string]: "transparent" }}>
                       you
                     </span>
                   </div>

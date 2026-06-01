@@ -4,25 +4,31 @@ import { WhatMatters } from "@/components/sections/WhatMatters";
 
 const features = [
   {
+    id: "feature-triage",
+    number: "01",
     label: "What Matters",
     headline: "Dirac finds what matters.",
     body:
       "38 emails came in overnight. Most don't deserve your attention. Dirac reads every one, weighs sender, thread history, urgency, and your own past behavior — then surfaces only what needs you. The rest is filed, archived, or visible in the background.",
-    align: "right",
+    align: "right" as const,
   },
   {
+    id: "feature-voice",
+    number: "02",
     label: "Voice Learning",
     headline: "Drafts that sound like you. Not like AI wrote them.",
     body:
       "Dirac reads your sent mail to build a deep model of your writing style, tone, and vocabulary. Every draft it produces is calibrated to your voice — not a generic template.",
-    align: "left",
+    align: "left" as const,
   },
   {
+    id: "feature-instruction",
+    number: "03",
     label: "By Instruction",
     headline: "Email management as a sentence.",
     body:
       'Tell Dirac what you want done — "star anything from investors," "archive every newsletter from last month," "unsubscribe from anything I haven\'t opened in 90 days." It identifies the threads, drafts the action, waits for your one tap to apply.',
-    align: "right",
+    align: "right" as const,
   },
 ];
 
@@ -30,46 +36,44 @@ function FeatureVisual({ label }: { label: string }) {
   if (label === "What Matters") return <WhatMatters />;
   if (label === "Voice Learning") return <VoiceLearning />;
   if (label === "By Instruction") return <ByInstruction />;
-  return <ScreenshotPlaceholder label={label} />;
+  return null;
 }
 
-function ScreenshotPlaceholder({ label }: { label: string }) {
-  return (
-    <div className="screenshot-placeholder w-full aspect-[16/10] min-h-[220px] flex flex-col items-center justify-center gap-2.5 px-8 text-center">
-      <div className="w-6 h-6 rounded-md border border-white/10 bg-white/4 flex items-center justify-center">
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-      </div>
-      <p className="text-white/18 text-xs font-mono tracking-wide">
-        {label} — screenshot coming soon
-      </p>
-    </div>
-  );
-}
+const titleFont = { fontFamily: "var(--font-space-grotesk)" };
+const monoFont = { fontFamily: "var(--font-geist-mono), ui-monospace, monospace" };
 
 export function Features() {
   return (
-    <section className="py-24 md:py-36" id="features">
-      <div className="max-w-7xl mx-auto px-6">
-        <p className="text-xs text-white/30 uppercase tracking-widest font-medium mb-6 pl-1">
-          What Dirac does
-        </p>
-
-        <div className="flex flex-col gap-32 md:gap-40">
-          {features.map((feature, i) => (
+    <div id="features">
+      {features.map((feature, i) => (
+        <section
+          key={feature.id}
+          id={feature.id}
+          className={`py-16 md:py-24 ${i === 0 ? "pt-24 md:pt-32" : ""} ${i > 0 ? "border-t-2 border-white/[0.05]" : ""}`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
             <div
-              key={i}
               className={`grid md:grid-cols-2 gap-12 md:gap-20 items-center ${
-                feature.align === "left" ? "" : "md:[&>:first-child]:order-2 md:[&>:last-child]:order-1"
+                feature.align === "left"
+                  ? ""
+                  : "md:[&>:first-child]:order-2 md:[&>:last-child]:order-1"
               }`}
             >
-              {/* Text */}
               <div className="flex flex-col">
-                <span className="text-xs text-white/30 uppercase tracking-widest font-medium mb-5">
-                  {feature.label}
-                </span>
+                <div className="flex items-baseline gap-3 mb-5">
+                  <span
+                    className="text-sm text-accent tabular-nums tracking-widest"
+                    style={monoFont}
+                  >
+                    {feature.number}
+                  </span>
+                  <span className="text-xs text-white/25 uppercase tracking-widest font-medium">
+                    {feature.label}
+                  </span>
+                </div>
                 <h3
                   className="text-3xl md:text-4xl font-semibold text-white leading-tight mb-5"
-                  style={{ fontFamily: "var(--font-space-grotesk)" }}
+                  style={titleFont}
                 >
                   {feature.headline}
                 </h3>
@@ -80,9 +84,11 @@ export function Features() {
 
               <FeatureVisual label={feature.label} />
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </div>
+        </section>
+      ))}
+
+      <div className="h-8 md:h-12" aria-hidden />
+    </div>
   );
 }

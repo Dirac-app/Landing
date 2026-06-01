@@ -31,7 +31,7 @@ export function CTASection() {
             >
               <Dithering
                 colorBack="#00000000"
-                colorFront="#F97316"
+                colorFront="var(--color-accent)"
                 shape="warp"
                 type="4x4"
                 speed={isHovered ? 0.15 : 0.06}
@@ -44,8 +44,8 @@ export function CTASection() {
           <div className="relative z-10 px-6 max-w-4xl mx-auto text-center flex flex-col items-center">
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/70">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-400"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-light"></span>
               </span>
               Now accepting waitlist applications
             </div>
@@ -64,7 +64,7 @@ export function CTASection() {
               prioritized, and responded to — in their voice.
             </p>
 
-            <button className="group inline-flex h-13 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-10 text-base font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]">
+            <button className="group inline-flex h-13 items-center justify-center gap-3 rounded-full btn-accent px-10 text-base font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]">
               <span>Join the Waitlist</span>
               <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>

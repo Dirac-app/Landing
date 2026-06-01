@@ -65,22 +65,17 @@ export function VoiceLearning() {
 
         {/* Your voice — wins */}
         <div
-          className="rounded-xl border p-4"
-          style={{
-            background: "#0F0E0C",
-            borderColor: "rgba(251,146,60,0.35)",
-            boxShadow: "0 0 32px rgba(251,146,60,0.12)",
-          }}
+          className="rounded-xl p-4 accent-border-default accent-shadow-md"
+          style={{ ["--accent-fill" as string]: "#0F0E0C" }}
         >
           <div className="flex items-center gap-1.5 mb-3">
             <Sparkles
-              className="h-3 w-3 shrink-0"
-              style={{ color: "#FB923C" }}
+              className="h-3 w-3 shrink-0 text-accent"
               strokeWidth={2}
             />
             <p
-              className="text-[10px] tracking-[0.14em]"
-              style={{ fontFamily: mono, color: "#FB923C" }}
+              className="text-[10px] tracking-[0.14em] text-accent"
+              style={{ fontFamily: mono }}
             >
               YOUR VOICE · DRAFTED
             </p>

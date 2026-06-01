@@ -20,18 +20,13 @@ export function ByInstruction() {
       >
         {/* Instruction input */}
         <div
-          className="rounded-lg border px-3.5 py-2.5"
-          style={{
-            background: "#0F0E0C",
-            borderColor: "rgba(251,146,60,0.45)",
-            boxShadow:
-              "0 0 0 1px rgba(251,146,60,0.2), 0 0 20px rgba(251,146,60,0.1)",
-          }}
+          className="rounded-lg px-3.5 py-2.5 accent-border-strong accent-shadow-focus"
+          style={{ ["--accent-fill" as string]: "#0F0E0C" }}
         >
           <p className="text-[13px] text-[#E8E5DD] leading-snug">
             Star anything from investors this week
             <span
-              className="inline-block w-px h-[14px] ml-0.5 align-middle bg-orange-400 animate-pulse"
+              className="inline-block w-px h-[14px] ml-0.5 align-middle bg-accent animate-pulse"
               aria-hidden
             />
           </p>
@@ -39,15 +34,12 @@ export function ByInstruction() {
 
         {/* Plan preview */}
         <div
-          className="rounded-[10px] border p-3.5"
-          style={{
-            background: "rgba(251,146,60,0.04)",
-            borderColor: "rgba(251,146,60,0.2)",
-          }}
+          className="rounded-[10px] p-3.5 accent-border-subtle"
+          style={{ ["--accent-fill" as string]: "#181714" }}
         >
           <p
-            className="text-[10px] tracking-[0.12em] mb-3"
-            style={{ fontFamily: mono, color: "#FB923C" }}
+            className="text-[10px] tracking-[0.12em] mb-3 text-accent"
+            style={{ fontFamily: mono }}
           >
             FOUND 5 THREADS · WILL MARK AS STARRED
           </p>
@@ -56,7 +48,7 @@ export function ByInstruction() {
             {threads.map((thread) => (
               <div key={thread.sender} className="flex items-start gap-2 min-w-0">
                 <Star
-                  className="h-3 w-3 shrink-0 mt-0.5 text-orange-400"
+                  className="h-3 w-3 shrink-0 mt-0.5 text-accent"
                   fill="currentColor"
                   strokeWidth={0}
                 />

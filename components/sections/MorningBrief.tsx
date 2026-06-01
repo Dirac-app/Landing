@@ -33,21 +33,17 @@ export function MorningBrief() {
           {/* Dashed selection frame */}
           <div className="absolute -inset-2 pointer-events-none" aria-hidden>
             <div
-              className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-dashed rounded-tl-xl"
-              style={{ borderColor: "rgba(251,146,60,0.45)" }}
+              className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-dashed rounded-tl-xl border-accent-dashed"
             />
             <div
-              className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-dashed rounded-tr-xl"
-              style={{ borderColor: "rgba(251,146,60,0.45)" }}
+              className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-dashed rounded-tr-xl border-accent-dashed"
             />
             <div
-              className="absolute top-0 left-2.5 right-2.5 border-t-2 border-dashed"
-              style={{ borderColor: "rgba(251,146,60,0.45)" }}
+              className="absolute top-0 left-2.5 right-2.5 border-t-2 border-dashed border-accent-dashed"
             />
             <div
-              className="absolute top-0 bottom-0 left-0 border-l-2 border-dashed"
+              className="absolute top-0 bottom-0 left-0 border-l-2 border-dashed border-accent-dashed"
               style={{
-                borderColor: "rgba(251,146,60,0.45)",
                 maskImage:
                   "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
                 WebkitMaskImage:
@@ -55,9 +51,8 @@ export function MorningBrief() {
               }}
             />
             <div
-              className="absolute top-0 bottom-0 right-0 border-r-2 border-dashed"
+              className="absolute top-0 bottom-0 right-0 border-r-2 border-dashed border-accent-dashed"
               style={{
-                borderColor: "rgba(251,146,60,0.45)",
                 maskImage:
                   "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
                 WebkitMaskImage:
@@ -100,17 +95,13 @@ export function MorningBrief() {
             </p>
 
             <div
-              className="rounded-[10px] border p-3.5 mb-3.5"
-              style={{
-                background: "rgba(251,146,60,0.04)",
-                borderColor: "rgba(251,146,60,0.35)",
-                boxShadow: "0 0 24px rgba(251,146,60,0.12)",
-              }}
+              className="rounded-[10px] p-3.5 mb-3.5 accent-border-default accent-shadow-sm"
+              style={{ ["--accent-fill" as string]: "#181714" }}
             >
               <div className="flex items-center gap-2 mb-2">
-                <Send className="h-3 w-3 text-orange-400 shrink-0" strokeWidth={2} />
+                <Send className="h-3 w-3 text-accent shrink-0" strokeWidth={2} />
                 <span
-                  className="text-[9px] text-orange-400 tracking-[0.14em] font-medium"
+                  className="text-[9px] text-accent tracking-[0.14em] font-medium"
                   style={{ fontFamily: mono }}
                 >
                   DRAFTED REPLY

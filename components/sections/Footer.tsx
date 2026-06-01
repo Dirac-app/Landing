@@ -2,7 +2,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 py-12">
+    <footer className="py-12">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-[1fr_auto] gap-10 items-start">
           {/* Left */}
@@ -37,10 +37,10 @@ export function Footer() {
                 peter@dirac.app
               </a>
               <a
-                href="#about"
+                href="#why"
                 className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
               >
-                About
+                Why
               </a>
               <a
                 href="#waitlist"

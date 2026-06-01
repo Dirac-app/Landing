@@ -35,15 +35,18 @@ export function WhatMatters() {
           {priority.map((item, i) => (
             <div
               key={item.subject}
-              className="flex items-start gap-2.5 rounded-lg border px-3 py-2.5"
-              style={{
-                background: i === 0 ? "rgba(251,146,60,0.06)" : "rgba(255,255,255,0.02)",
-                borderColor: i === 0 ? "rgba(251,146,60,0.25)" : "rgba(255,255,255,0.06)",
-              }}
+              className={`flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${
+                i === 0 ? "accent-border-subtle" : "border border-white/[0.06]"
+              }`}
+              style={
+                i === 0
+                  ? { ["--accent-fill" as string]: "#181714" }
+                  : { background: "rgba(255,255,255,0.02)" }
+              }
             >
               <span
-                className="text-[10px] tabular-nums shrink-0 mt-0.5 w-4"
-                style={{ fontFamily: mono, color: "#FB923C" }}
+                className="text-[10px] tabular-nums shrink-0 mt-0.5 w-4 text-accent"
+                style={{ fontFamily: mono }}
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -55,8 +58,8 @@ export function WhatMatters() {
                   {item.subject}
                 </p>
                 <span
-                  className="text-[9px] tracking-[0.12em] mt-1 inline-block"
-                  style={{ fontFamily: mono, color: "#FB923C" }}
+                  className="text-[9px] tracking-[0.12em] mt-1 inline-block text-accent"
+                  style={{ fontFamily: mono }}
                 >
                   {item.tag}
                 </span>

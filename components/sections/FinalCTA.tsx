@@ -2,7 +2,7 @@ import { WaitlistForm } from "@/components/ui/waitlist-form";
 
 export function FinalCTA() {
   return (
-    <section className="py-28 md:py-40 border-t border-white/5">
+    <section className="py-28 md:py-40" id="waitlist">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-3xl">
           <h2
