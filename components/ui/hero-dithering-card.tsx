@@ -64,10 +64,13 @@ export function CTASection() {
               prioritized, and responded to — in their voice.
             </p>
 
-            <button className="group inline-flex h-13 items-center justify-center gap-3 rounded-full btn-accent px-10 text-base font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]">
+            <a
+              href="/pricing"
+              className="group inline-flex h-13 items-center justify-center gap-3 rounded-full btn-accent px-10 text-base font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+            >
               <span>Join the Waitlist</span>
               <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

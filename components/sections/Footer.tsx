@@ -1,3 +1,6 @@
+import { BuiltByNerodyn } from "@/components/ui/built-by-nerodyn";
+import { PRICING_PATH } from "@/lib/urls";
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -29,6 +32,12 @@ export function Footer() {
 
           {/* Right */}
           <div className="flex flex-col gap-3 items-start md:items-end">
+            <a
+              href={PRICING_PATH}
+              className="inline-flex h-9 items-center justify-center rounded-full btn-accent px-5 text-xs font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] mb-1"
+            >
+              Get Started
+            </a>
             <div className="flex flex-col md:items-end gap-2.5">
               <a
                 href="mailto:peter@dirac.app"
@@ -43,10 +52,10 @@ export function Footer() {
                 Why
               </a>
               <a
-                href="#waitlist"
+                href="/pricing"
                 className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
               >
-                Waitlist
+                Pricing
               </a>
               <a
                 href="https://twitter.com"
@@ -58,6 +67,9 @@ export function Footer() {
               </a>
             </div>
           </div>
+        </div>
+        <div className="mt-10 pt-8 border-t border-white/5 flex justify-center">
+          <BuiltByNerodyn />
         </div>
       </div>
     </footer>

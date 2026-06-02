@@ -53,7 +53,7 @@ export function Nav() {
 
         <div className="hidden md:block">
           <a
-            href="#waitlist"
+            href="/pricing"
             className="inline-flex h-9 items-center gap-1.5 rounded-full accent-border-outline px-5 text-sm font-medium text-accent transition-all duration-200 hover:bg-accent/10"
           >
             Join Waitlist
@@ -85,7 +85,7 @@ export function Nav() {
             </a>
           ))}
           <a
-            href="#waitlist"
+            href="/pricing"
             className="inline-flex h-10 items-center justify-center rounded-full btn-accent px-6 text-sm font-semibold text-black mt-2"
             onClick={() => setMobileOpen(false)}
           >

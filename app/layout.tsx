@@ -33,11 +33,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dirac — AI-native email. Your inbox, already handled.",
+  title: "dirac - your intelligent email",
   description:
     "Dirac is an AI email client that reads your inbox, learns your voice, and delivers a morning brief with summaries, priorities, and ready-to-send drafts.",
   openGraph: {
-    title: "Dirac — Chief of staff for your inbox",
+    title: "dirac - your intelligent email",
     description:
       "Wake up to a morning brief with email summaries, action items, and ready-to-send replies — written in your voice.",
     siteName: "Dirac",

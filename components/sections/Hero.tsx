@@ -1,4 +1,4 @@
-import { WaitlistForm } from "@/components/ui/waitlist-form";
+import { StartTrialCta } from "@/components/ui/start-trial-cta";
 import { DitheringBackground } from "@/components/ui/dithering-background";
 import { MorningBrief } from "@/components/sections/MorningBrief";
 
@@ -35,7 +35,7 @@ export function Hero() {
               ready-to-send drafts. Before you open your laptop.
             </p>
 
-            <WaitlistForm />
+            <StartTrialCta />
           </div>
 
           {/* Right — morning brief */}
