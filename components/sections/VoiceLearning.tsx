@@ -81,10 +81,13 @@ export function VoiceLearning() {
             </p>
           </div>
           <p className="text-[13px] leading-relaxed" style={{ color: "#E8E5DD" }}>
-            Roelof,yes, will get the signed copy over before EOD. Friday 2pm works for me,
+            Roelof,
+            <br></br>
+            YES, will get the signed copy over before EOD. Friday 2pm works for me,
             I&apos;ll send a calendar invite.
             <br></br><br></br>
             Looking forward to it :),
+            <br></br>
             Avi
           </p>
         </div>

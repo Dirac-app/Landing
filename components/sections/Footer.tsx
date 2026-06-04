@@ -58,6 +58,18 @@ export function Footer() {
                 Pricing
               </a>
               <a
+                href="/privacy"
+                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
+              >
+                Privacy
+              </a>
+              <a
+                href="/terms"
+                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
+              >
+                Terms
+              </a>
+              <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
