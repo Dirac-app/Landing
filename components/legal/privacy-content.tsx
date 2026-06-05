@@ -7,7 +7,7 @@ export function PrivacyContent() {
   return (
     <LegalPageLayout title="Privacy Policy" lastUpdated={LAST_UPDATED}>
       <p className="text-sm text-white/50 leading-relaxed mb-10">
-        This Privacy Policy describes how Nerodyn (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
+        This Privacy Policy describes how Dirac (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
         collects, uses, and shares information when you use Dirac, our AI-native email client,
         including dirac.app and app.dirac.app (the &quot;Service&quot;).
       </p>
@@ -109,7 +109,7 @@ export function PrivacyContent() {
 
       <LegalSection title="Contact">
         <p>
-          Questions about this Privacy Policy? Contact Nerodyn at{" "}
+          Questions about this Privacy Policy? Contact Dirac at{" "}
           <a href="mailto:peter@dirac.app" className="text-white/70 hover:text-white transition-colors">
             peter@dirac.app
           </a>

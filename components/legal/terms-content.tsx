@@ -8,13 +8,13 @@ export function TermsContent() {
     <LegalPageLayout title="Terms of Service" lastUpdated={LAST_UPDATED}>
       <p className="text-sm text-white/50 leading-relaxed mb-10">
         These Terms of Service (&quot;Terms&quot;) govern your access to and use of Dirac, an
-        AI-native email client operated by Nerodyn, including dirac.app and app.dirac.app (the
+        AI-native email client operated by Dirac, including dirac.app and app.dirac.app (the
         &quot;Service&quot;). By using Dirac, you agree to these Terms.
       </p>
 
       <LegalSection title="Eligibility">
         <p>
-          You must be at least 18 years old and able to form a binding contract to use the Service.
+          You must be able to form a binding contract to use the Service and at least 13 years old.
           You represent that the information you provide is accurate and that you have authority to
           connect any email accounts you link to Dirac.
         </p>
@@ -73,7 +73,7 @@ export function TermsContent() {
 
       <LegalSection title="Intellectual property">
         <p>
-          Dirac, including its software, design, and branding, is owned by Nerodyn and protected by
+          Dirac, including its software, design, and branding, is owned by Dirac and protected by
           intellectual property laws. We grant you a limited, non-exclusive, non-transferable license
           to use the Service for your internal business purposes in accordance with these Terms.
         </p>
@@ -94,7 +94,7 @@ export function TermsContent() {
 
       <LegalSection title="Limitation of liability">
         <p>
-          TO THE MAXIMUM EXTENT PERMITTED BY LAW, NERODYN AND ITS AFFILIATES WILL NOT BE LIABLE FOR
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, Dirac AND ITS AFFILIATES WILL NOT BE LIABLE FOR
           ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOST
           PROFITS, DATA, OR GOODWILL, ARISING FROM YOUR USE OF THE SERVICE. OUR TOTAL LIABILITY FOR
           ANY CLAIM RELATING TO THE SERVICE IS LIMITED TO THE AMOUNT YOU PAID US IN THE TWELVE (12)
@@ -128,7 +128,7 @@ export function TermsContent() {
 
       <LegalSection title="Contact">
         <p>
-          Questions about these Terms? Contact Nerodyn at{" "}
+          Questions about these Terms? Contact Dirac at{" "}
           <a href="mailto:peter@dirac.app" className="text-white/70 hover:text-white transition-colors">
             peter@dirac.app
           </a>

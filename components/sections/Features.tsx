@@ -9,7 +9,7 @@ const features = [
     label: "What Matters",
     headline: "Dirac finds what matters.",
     body:
-      "38 emails came in overnight. Most don't deserve your attention. Dirac reads every one, weighs sender, thread history, urgency, and your own past behavior — then surfaces only what needs you. The rest is filed, archived, or visible in the background.",
+      "38 emails came in overnight, but most don't deserve your attention. Dirac reads every one, weighs sender, thread history, urgency, and your own past behavior — then surfaces only what needs you. The rest is filed, archived, or visible in the background.",
     align: "right" as const,
   },
   {
@@ -18,7 +18,7 @@ const features = [
     label: "Voice Learning",
     headline: "Drafts that sound like you. Not like AI wrote them.",
     body:
-      "Dirac reads your sent mail to build a deep model of your writing style, tone, and vocabulary. Every draft it produces is calibrated to your voice — not a generic template.",
+      "Dirac reads your sent mail to build a deep model of your writing style, tone, and vocabulary. Every draft it produces is calibrated to your voice, Not a generic template.",
     align: "left" as const,
   },
   {
@@ -27,7 +27,7 @@ const features = [
     label: "By Instruction",
     headline: "Email management as a sentence.",
     body:
-      'Tell Dirac what you want done — "star anything from investors," "archive every newsletter from last month," "unsubscribe from anything I haven\'t opened in 90 days." It identifies the threads, drafts the action, waits for your one tap to apply.',
+      'Tell Dirac what you want done: "star anything from investors," "archive every newsletter from last month," "unsubscribe from anything I haven\'t opened in 90 days." It identifies the threads, drafts the action, waits for your one tap to apply.',
     align: "right" as const,
   },
 ];
