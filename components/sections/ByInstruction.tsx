@@ -68,16 +68,16 @@ export function ByInstruction() {
         </div>
 
         {/* Apply */}
-        <div className="relative">
+        <div className="relative opacity-75 pointer-events-none select-none" aria-hidden>
           <MousePointer2
             className="absolute -top-5 left-[58%] h-12 w-12 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
             fill="white"
             strokeWidth={1.5}
-            aria-hidden
           />
           <button
             type="button"
-            className="inline-flex w-full items-center justify-center text-[13px] font-semibold text-black py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600"
+            tabIndex={-1}
+            className="inline-flex w-full items-center justify-center text-[13px] font-semibold text-black py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 cursor-default"
           >
             Apply (5)
           </button>

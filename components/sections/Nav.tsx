@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { SIGNUP_URL } from "@/lib/urls";
 
 const links = [
   { href: "#scenario", label: "Scenario" },
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How it works" },
-  { href: "#why", label: "Why" },
+  { href: "/pricing", label: "Pricing" },
 ] as const;
 
 export function Nav() {
@@ -53,10 +54,10 @@ export function Nav() {
 
         <div className="hidden md:block">
           <a
-            href="/pricing"
+            href={SIGNUP_URL}
             className="inline-flex h-9 items-center gap-1.5 rounded-full accent-border-outline px-5 text-sm font-medium text-accent transition-all duration-200 hover:bg-accent/10"
           >
-            Join Waitlist
+            Signup Today
           </a>
         </div>
 
@@ -85,11 +86,11 @@ export function Nav() {
             </a>
           ))}
           <a
-            href="/pricing"
+            href={SIGNUP_URL}
             className="inline-flex h-10 items-center justify-center rounded-full btn-accent px-6 text-sm font-semibold text-black mt-2"
             onClick={() => setMobileOpen(false)}
           >
-            Join Waitlist
+            Signup Today
           </a>
         </div>
       )}

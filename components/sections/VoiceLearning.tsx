@@ -85,6 +85,10 @@ export function VoiceLearning() {
             <br></br>
             YES, will get the signed copy over before EOD. Friday 2pm works for me,
             I&apos;ll send a calendar invite.
+            <span
+              className="inline-block w-px h-[14px] ml-0.5 align-middle bg-accent animate-pulse"
+              aria-hidden
+            />
             <br></br><br></br>
             Looking forward to it :),
             <br></br>

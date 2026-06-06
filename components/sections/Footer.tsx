@@ -1,5 +1,5 @@
 import { BuiltByNerodyn } from "@/components/ui/built-by-nerodyn";
-import { PRICING_PATH } from "@/lib/urls";
+import { SIGNUP_URL } from "@/lib/urls";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -33,7 +33,7 @@ export function Footer() {
           {/* Right */}
           <div className="flex flex-col gap-3 items-start md:items-end">
             <a
-              href={PRICING_PATH}
+              href={SIGNUP_URL}
               className="inline-flex h-9 items-center justify-center rounded-full btn-accent px-5 text-xs font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] mb-1"
             >
               Get Started

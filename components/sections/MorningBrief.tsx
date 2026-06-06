@@ -1,4 +1,4 @@
-import { Send } from "lucide-react";
+import { MousePointer2, Send } from "lucide-react";
 
 const mono = "var(--font-geist-mono), ui-monospace, monospace";
 const title = "var(--font-space-grotesk), sans-serif";
@@ -30,37 +30,6 @@ export function MorningBrief() {
         </div>
 
         <div className="relative">
-          {/* Dashed selection frame */}
-          <div className="absolute -inset-2 pointer-events-none" aria-hidden>
-            <div
-              className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-dashed rounded-tl-xl border-accent-dashed"
-            />
-            <div
-              className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-dashed rounded-tr-xl border-accent-dashed"
-            />
-            <div
-              className="absolute top-0 left-2.5 right-2.5 border-t-2 border-dashed border-accent-dashed"
-            />
-            <div
-              className="absolute top-0 bottom-0 left-0 border-l-2 border-dashed border-accent-dashed"
-              style={{
-                maskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
-              }}
-            />
-            <div
-              className="absolute top-0 bottom-0 right-0 border-r-2 border-dashed border-accent-dashed"
-              style={{
-                maskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 18%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 65%, transparent 100%)",
-              }}
-            />
-          </div>
-
           <div
             className="rounded-xl border border-white/[0.06] p-[18px] mb-3.5"
             style={{ background: "#181714" }}
@@ -113,13 +82,21 @@ export function MorningBrief() {
               </p>
             </div>
 
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-black px-[18px] py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600"
-            >
-              <Send className="h-3.5 w-3.5" strokeWidth={2} />
-              Send
-            </button>
+            <div className="relative w-fit opacity-75 pointer-events-none select-none" aria-hidden>
+              <MousePointer2
+                className="absolute -top-4 right-[-18px] h-10 w-10 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
+                fill="white"
+                strokeWidth={1.5}
+              />
+              <button
+                type="button"
+                tabIndex={-1}
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-black px-[18px] py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 cursor-default"
+              >
+                <Send className="h-3.5 w-3.5" strokeWidth={2} />
+                Send
+              </button>
+            </div>
           </div>
 
           <FadedCard blur="1.2px" opacity={0.95}>

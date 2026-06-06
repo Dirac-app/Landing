@@ -2,6 +2,7 @@
 
 import { useState, KeyboardEvent } from "react";
 import { ArrowRight, ArrowLeft, Loader2, Check } from "lucide-react";
+import { SIGNUP_URL } from "@/lib/urls";
 
 type Answers = {
   role: string;
@@ -179,7 +180,7 @@ export function WaitlistForm() {
             className="flex-1 h-12 rounded-xl border border-white/10 bg-white/4 px-4 text-sm text-white placeholder:text-white/25 outline-none focus:border-white/20 focus:bg-white/6 transition-all duration-200"
           />
           <a
-            href="/pricing"
+            href={SIGNUP_URL}
             className="inline-flex h-12 items-center justify-center gap-2 rounded-xl btn-accent px-6 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] whitespace-nowrap"
           >
             Get Started
