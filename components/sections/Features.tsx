@@ -1,6 +1,7 @@
 import { ByInstruction } from "@/components/sections/ByInstruction";
 import { VoiceLearning } from "@/components/sections/VoiceLearning";
 import { WhatMatters } from "@/components/sections/WhatMatters";
+import { Spotlight } from "@/components/ui/spotlight";
 
 const features = [
   {
@@ -11,6 +12,11 @@ const features = [
     body:
       "38 emails came in overnight, but most don't deserve your attention. Dirac reads every one, weighs sender, thread history, urgency, and your own past behavior — then surfaces only what needs you. The rest is filed, archived, or visible in the background.",
     align: "right" as const,
+    spotlight: {
+      // LEFT source — top-left corner, beam fans down-right toward the WhatMatters card
+      className: "top-0 left-0",
+      transform: "scaleX(-1) rotate(-12deg)",
+    },
   },
   {
     id: "feature-voice",
@@ -20,6 +26,11 @@ const features = [
     body:
       "Dirac reads your sent mail to build a deep model of your writing style, tone, and vocabulary. Every draft it produces is calibrated to your voice, Not a generic template.",
     align: "left" as const,
+    spotlight: {
+      // RIGHT source — top-right corner, steeper diagonal down toward the VoiceLearning card
+      className: "-top-10 right-0",
+      transform: "rotate(22deg)",
+    },
   },
   {
     id: "feature-instruction",
@@ -29,6 +40,11 @@ const features = [
     body:
       'Tell Dirac what you want done: "star anything from investors," "archive every newsletter from last month," "unsubscribe from anything I haven\'t opened in 90 days." It identifies the threads, drafts the action, waits for your one tap to apply.',
     align: "right" as const,
+    spotlight: {
+      // LEFT source — mid-left, shallower angle than 01, pointing toward the instruction input
+      className: "top-1/4 left-0",
+      transform: "scaleX(-1) rotate(8deg)",
+    },
   },
 ];
 
@@ -49,9 +65,15 @@ export function Features() {
         <section
           key={feature.id}
           id={feature.id}
-          className={`py-16 md:py-24 ${i === 0 ? "pt-24 md:pt-32" : ""} ${i > 0 ? "border-t-2 border-white/[0.05]" : ""}`}
+          // clip-path clips SVG filter effects (overflow-hidden doesn't)
+          className={`relative py-16 md:py-24 [clip-path:inset(0)] ${i === 0 ? "pt-24 md:pt-32" : ""} ${i > 0 ? "border-t-2 border-white/[0.05]" : ""}`}
         >
-          <div className="max-w-7xl mx-auto px-6">
+          <Spotlight
+            className={feature.spotlight.className}
+            transform={feature.spotlight.transform}
+          />
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div
               className={`grid md:grid-cols-2 gap-12 md:gap-20 items-center ${
                 feature.align === "left"

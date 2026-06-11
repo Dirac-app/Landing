@@ -87,7 +87,7 @@ export function Nav() {
           ))}
           <a
             href={SIGNUP_URL}
-            className="inline-flex h-10 items-center justify-center rounded-full btn-accent px-6 text-sm font-semibold text-black mt-2"
+            className="inline-flex h-10 items-center justify-center rounded-full btn-primary px-6 text-sm font-semibold mt-2"
             onClick={() => setMobileOpen(false)}
           >
             Signup Today

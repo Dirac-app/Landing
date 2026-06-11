@@ -1,11 +1,11 @@
 import { StartTrialCta } from "@/components/ui/start-trial-cta";
-import { DitheringBackground } from "@/components/ui/dithering-background";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { MorningBrief } from "@/components/sections/MorningBrief";
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-16 bg-black overflow-x-visible" id="hero">
-      <DitheringBackground variant="hero" />
+      <AuroraBackground variant="hero" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-24 md:py-32">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-start">
           {/* Left — content */}

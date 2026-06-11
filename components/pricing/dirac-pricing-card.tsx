@@ -113,7 +113,7 @@ export function DiracPricingCard({ annual }: DiracPricingCardProps) {
 
             <a
               href={SIGNUP_URL}
-              className="mt-8 inline-flex w-full h-12 items-center justify-center gap-2 rounded-xl btn-accent text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+              className="mt-8 inline-flex w-full h-12 items-center justify-center gap-2 rounded-xl btn-primary text-sm font-semibold"
             >
               Start Free Trial
               <ArrowRight className="h-4 w-4" />
