@@ -103,7 +103,7 @@ export function DiracPricingCard({ annual }: DiracPricingCardProps) {
                 <p className="text-sm text-accent-light/80 mt-2">Save $40 vs monthly billing</p>
               )}
               <p className="text-sm text-white/40 mt-2">
-                14-day free trial · No credit card required
+                7-day free trial
               </p>
             </div>
 

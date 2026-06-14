@@ -15,8 +15,7 @@ export function FinalCTA() {
           </h2>
 
           <p className="text-white/40 text-lg leading-relaxed max-w-xl">
-            Dirac is in early access. Spots are limited while we tune the model for each user.
-            Join the waitlist and we&apos;ll reach out directly.
+            Start your 7-day free trial.
           </p>
         </div>
 

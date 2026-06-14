@@ -52,6 +52,12 @@ export function Footer() {
                 Why
               </a>
               <a
+                href="#faq"
+                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
+              >
+                FAQ
+              </a>
+              <a
                 href="/pricing"
                 className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
               >

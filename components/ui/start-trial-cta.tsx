@@ -16,7 +16,7 @@ export function StartTrialCta({ id }: StartTrialCtaProps) {
         <ArrowRight className="h-4 w-4" />
       </a>
       <p className="text-sm text-white/30 pl-1">
-        14-day free trial · No credit card required
+        7-day free trial
       </p>
     </div>
   );

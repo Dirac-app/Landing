@@ -1,11 +1,11 @@
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
-import { Scenario } from "@/components/sections/Scenario";
-import { Features } from "@/components/sections/Features";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Comparison } from "@/components/sections/Comparison";
-import { WhyMade } from "@/components/sections/WhyMade";
+import { Solutions } from "@/components/sections/Solutions";
+import { Product } from "@/components/sections/Product";
+import { SocialProof } from "@/components/sections/SocialProof";
+import { WhyUs } from "@/components/sections/WhyUs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/sections/Footer";
 import { ActDivider } from "@/components/ui/act-divider";
 import { GlowDivider } from "@/components/ui/glow-divider";
@@ -19,17 +19,17 @@ export default function Home() {
         <GlowDivider />
 
         <div className="bg-black">
-          <Scenario />
+          <Solutions />
           <ActDivider />
-          <Features />
+          <Product />
           <ActDivider />
-          <HowItWorks />
+          <SocialProof />
           <ActDivider />
-          <Comparison />
-          <ActDivider />
-          <WhyMade />
+          <WhyUs />
           <ActDivider />
           <FinalCTA />
+          <ActDivider />
+          <FAQ />
         </div>
       </main>
       <Footer />

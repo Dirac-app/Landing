@@ -15,7 +15,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-light"></span>
               </span>
-              launching soon
+              7-day free trial
             </div>
 
             <h1
