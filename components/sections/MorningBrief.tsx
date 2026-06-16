@@ -84,7 +84,7 @@ export function MorningBrief() {
 
             <div className="relative w-fit opacity-75 pointer-events-none select-none" aria-hidden>
               <MousePointer2
-                className="absolute -top-4 right-[-18px] h-10 w-10 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
+                className="absolute -top-4 right-0 h-10 w-10 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
                 fill="white"
                 strokeWidth={1.5}
               />

@@ -2,9 +2,9 @@ const mono = "var(--font-geist-mono), ui-monospace, monospace";
 const title = "var(--font-space-grotesk), sans-serif";
 
 const priority = [
-  { subject: "Sequoia term sheet — respond by EOD", tag: "INVESTOR" },
-  { subject: "Board prep — call with Johnny Friday", tag: "URGENT" },
-  { subject: "Acme Corp churn risk — needs reply", tag: "CUSTOMER" },
+  { subject: "John might be a interested — respond by EOD", tag: "PROSPECT" },
+  { subject: "There's a bug in the last Deployment", tag: "URGENT" },
+  { subject: "Acme Corp — needs reply", tag: "CUSTOMER" },
   { subject: "Legal — signature required on SAFE", tag: "ACTION" },
 ];
 

@@ -29,7 +29,7 @@ export function PricingContent() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+      <main className="max-w-7xl mx-auto px-6 py-16 md:py-24 overflow-x-hidden">
         <PricingComparison />
 
         <div className="mt-16 flex justify-center">

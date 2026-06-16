@@ -70,7 +70,7 @@ export function ByInstruction() {
         {/* Apply */}
         <div className="relative opacity-75 pointer-events-none select-none" aria-hidden>
           <MousePointer2
-            className="absolute -top-5 left-[58%] h-12 w-12 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
+            className="absolute -top-4 right-2 h-10 w-10 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
             fill="white"
             strokeWidth={1.5}
           />

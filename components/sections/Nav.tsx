@@ -5,11 +5,10 @@ import { Menu, X } from "lucide-react";
 import { SIGNUP_URL } from "@/lib/urls";
 
 const links = [
-  { href: "#solutions", label: "Solutions" },
   { href: "#product", label: "Product" },
   { href: "#why", label: "Why" },
-  { href: "#faq", label: "FAQ" },
   { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 
 export function Nav() {

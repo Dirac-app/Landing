@@ -71,7 +71,7 @@ export function PricingComparison({ showHeader = true, className = "" }: Pricing
   const [annual, setAnnual] = useState(false);
 
   return (
-    <div className={className}>
+    <div className={`overflow-x-hidden ${className}`}>
       {showHeader && (
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <BillingToggle annual={annual} onChange={setAnnual} />
@@ -90,8 +90,8 @@ export function PricingComparison({ showHeader = true, className = "" }: Pricing
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch">
-        <div className="order-2 lg:order-1 flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 opacity-70 min-h-[480px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch min-w-0 w-full overflow-hidden">
+        <div className="order-2 lg:order-1 flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 opacity-70 min-w-0">
           <div className="mb-6">
             <h3
               className="text-xl font-semibold text-white/50 mb-1"
@@ -129,7 +129,7 @@ export function PricingComparison({ showHeader = true, className = "" }: Pricing
 
         <DiracPricingCard annual={annual} />
 
-        <div className="order-3 flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 opacity-70 min-h-[480px]">
+        <div className="order-3 flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-7 opacity-70 min-w-0">
           <div className="mb-6">
             <h3
               className="text-xl font-semibold text-white/50 mb-1"

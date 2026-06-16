@@ -57,7 +57,7 @@ const titleFont = { fontFamily: "var(--font-space-grotesk)" };
 
 export function FAQ() {
   return (
-    <section className="py-24 md:py-36" id="faq">
+    <section className="py-20 md:py-36 overflow-x-hidden" id="faq">
       <div className="max-w-3xl mx-auto px-6">
         <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
 

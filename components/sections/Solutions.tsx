@@ -2,21 +2,19 @@ import { SectionEyebrow } from "@/components/ui/section-eyebrow";
 
 export function Solutions() {
   const without = [
-    { time: "6:58am", text: "Alarm goes off. You already dread opening email." },
-    { time: "7:04am", text: "47 unread. You don't know which three actually matter." },
-    { time: "7:09am", text: "Scan subject lines. Guess at urgency. Miss context." },
-    { time: "7:22am", text: "Reply to one thread. Two others slip." },
-    { time: "7:41am", text: "Still in inbox. Your first hour is gone." },
-    { time: "8:15am", text: "First meeting. You're reacting, not leading." },
+    { time: "8:58am", text: "Alarm goes off. You already dread opening email." },
+    { time: "9:04am", text: "30 unread. You read each one to find the important ones." },
+    { time: "9:20am", text: "Scan subject lines, guess at urgency, miss context." },
+    { time: "9:22am", text: "Reply to a prospect email." },
+    { time: "9:41am", text: "Little did you know, there was an investor notice mail you missed." },
+    { time: "10:15am", text: "1 Hour later, Still in inbox...", accent: true },
   ];
 
   const with_ = [
-    { time: "6:58am", text: "Alarm goes off." },
-    { time: "7:01am", text: "Open your morning brief on your phone." },
-    { time: "7:03am", text: "Three things need your judgment. Everything else is handled." },
-    { time: "7:06am", text: "Review two drafts. Tap send." },
-    { time: "7:08am", text: "Done.", accent: true },
-    { time: "", text: "" },
+    { time: "8:00am", text: "Open your morning brief on your laptop." },
+    { time: "8:03am", text: "Three things need your approval. Everything else is handled." },
+    { time: "8:06am", text: "Review two drafts. Tap send." },
+    { time: "8:08am", text: "10 minutes later, Done.", accent: true },
   ];
 
   return (

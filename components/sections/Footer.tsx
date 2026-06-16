@@ -22,8 +22,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-xs text-white/25 max-w-[240px] leading-relaxed">
-              Chief of staff for your inbox. AI-native email that handles the work before you
-              start the day.
+              The email agent built around decisions, not busywork.
             </p>
             <p className="text-xs text-white/18 mt-2">
               © {year} Dirac. All rights reserved.
