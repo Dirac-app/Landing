@@ -73,9 +73,14 @@
 
 html {
   background-color: #000000;
-  scroll-behavior: smooth;
   overflow-x: hidden;
   max-width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -86,6 +91,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   max-width: 100%;
+}
+
+/* Fixed nav — solid bg instead of backdrop-blur (much cheaper while scrolling) */
+.nav-bar {
+  background: rgba(0, 0, 0, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Defer layout/paint for below-fold sections during scroll */
+main section:not(#hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 /* Gradient text */
@@ -329,8 +346,18 @@ body {
   );
 }
 
-.why-us-carousel-track {
+.why-us-carousel-track--active {
   will-change: transform;
+}
+
+.aurora-layer--active {
+  animation: aurora 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-layer--active {
+    animation: none;
+  }
 }
 
 .why-us-slide {

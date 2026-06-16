@@ -4,7 +4,10 @@ import { MorningBrief } from "@/components/sections/MorningBrief";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 bg-black overflow-x-hidden" id="hero">
+    <section
+      className="relative isolate min-h-screen flex items-center pt-16 bg-black overflow-x-hidden"
+      id="hero"
+    >
       <AuroraBackground variant="hero" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-24 md:py-32">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-start">
@@ -14,17 +17,14 @@ export function Hero() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-semibold tracking-tight text-white leading-[1.06] mb-7"
               style={{ fontFamily: "var(--font-space-grotesk)" }}
             >
-              Your inbox,
-              <br />
-              already handled
-              <br />
-              <span className="text-white/40">by 7am.</span>
+              The email agent built around decisions,
             </h1>
 
             <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-[440px]">
-              Dirac connects to Gmail or Outlook, learns your voice from sent
-              mail, and delivers a morning brief — summaries, priorities, and
-              ready-to-send drafts. Before you open your laptop.
+              not busywork. Dirac is not just an inbox. It&apos;s a product made with a
+              belief that founders shouldn&apos;t be their own email assistants. Dirac
+              lets you know what&apos;s important for the day, and the AI sorts out
+              everything in the background.
             </p>
 
             <StartTrialCta />

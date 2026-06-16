@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useInView } from "@/hooks/use-in-view";
 import { whyUsSlides, type BodyPart } from "@/components/why-us/slides";
 
 const titleFont = { fontFamily: "var(--font-space-grotesk)" };
@@ -34,7 +35,7 @@ function WhyUsSlideCard({
   icon: Icon,
 }: (typeof whyUsSlides)[number]) {
   return (
-    <article className="why-us-slide group/slide relative z-10 flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-md will-change-transform hover:border-white/[0.14] md:p-7">
+    <article className="why-us-slide group/slide relative z-10 flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#0a0a0a] p-6 hover:border-white/[0.14] md:p-7">
       <div
         className="why-us-slide-sheen pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.07] via-white/[0.02] to-transparent opacity-80"
         aria-hidden
@@ -57,6 +58,11 @@ function WhyUsSlideCard({
 }
 
 export function WhyUsCarousel() {
+  const { ref: viewportRef, inView } = useInView<HTMLDivElement>({
+    rootMargin: "200px 0px",
+    threshold: 0,
+  });
+
   const trackRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
   const speedRef = useRef(0);
@@ -94,7 +100,14 @@ export function WhyUsCarousel() {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || !inView) {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      lastTimeRef.current = null;
+      return;
+    }
 
     measureAndSyncSpeed();
 
@@ -105,20 +118,22 @@ export function WhyUsCarousel() {
       const track = trackRef.current;
       const loopWidth = loopWidthRef.current;
 
-      if (track && loopWidth > 0 && lastTimeRef.current !== null) {
-        const delta = time - lastTimeRef.current;
-        speedRef.current +=
-          (targetSpeedRef.current - speedRef.current) * SPEED_LERP;
+      if (track && loopWidth > 0) {
+        if (lastTimeRef.current !== null) {
+          const delta = time - lastTimeRef.current;
+          speedRef.current +=
+            (targetSpeedRef.current - speedRef.current) * SPEED_LERP;
 
-        offsetRef.current += speedRef.current * delta;
-        if (offsetRef.current >= loopWidth) {
-          offsetRef.current %= loopWidth;
+          offsetRef.current += speedRef.current * delta;
+          if (offsetRef.current >= loopWidth) {
+            offsetRef.current %= loopWidth;
+          }
+
+          track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
         }
-
-        track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+        lastTimeRef.current = time;
       }
 
-      lastTimeRef.current = time;
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -128,10 +143,11 @@ export function WhyUsCarousel() {
       window.removeEventListener("resize", onResize);
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
       }
       lastTimeRef.current = null;
     };
-  }, [measureAndSyncSpeed, reducedMotion]);
+  }, [inView, measureAndSyncSpeed, reducedMotion]);
 
   const handlePointerEnter = () => {
     hoveredRef.current = true;
@@ -158,13 +174,19 @@ export function WhyUsCarousel() {
   }
 
   return (
-    <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2">
+    <div
+      ref={viewportRef}
+      className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2"
+    >
       <div
         className="why-us-carousel-mask overflow-x-hidden overflow-y-visible px-6 py-4"
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
       >
-        <div ref={trackRef} className="why-us-carousel-track flex w-max items-stretch gap-5">
+        <div
+          ref={trackRef}
+          className={`why-us-carousel-track flex w-max items-stretch gap-5${inView ? " why-us-carousel-track--active" : ""}`}
+        >
           {loopSlides.map((slide, index) => (
             <WhyUsSlideCard key={`${slide.title}-${index}`} {...slide} />
           ))}

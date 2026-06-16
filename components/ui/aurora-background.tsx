@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useInView } from "@/hooks/use-in-view";
 import React from "react";
 
 type AuroraBackgroundProps = React.HTMLProps<HTMLDivElement> & {
@@ -21,8 +22,11 @@ export function AuroraBackground({
   variant = "full",
   ...props
 }: AuroraBackgroundProps) {
+  const { ref, inView } = useInView<HTMLDivElement>({ rootMargin: "120px" });
+
   return (
     <div
+      ref={ref}
       className={cn("absolute inset-0 overflow-hidden pointer-events-none", className)}
       style={{ zIndex: 0, ...(variant === "hero" ? heroMask : undefined) }}
       aria-hidden
@@ -37,13 +41,10 @@ export function AuroraBackground({
             [background-image:var(--dark-gradient),var(--aurora)]
             [background-size:300%,_200%]
             [background-position:50%_50%,50%_50%]
-            filter blur-[10px]
-            after:content-[""] after:absolute after:inset-0
-            after:[background-image:var(--dark-gradient),var(--aurora)]
-            after:[background-size:200%,_100%]
-            after:animate-aurora after:mix-blend-difference
+            aurora-layer
             pointer-events-none
-            absolute inset-0 opacity-40 will-change-transform`,
+            absolute inset-0 opacity-40`,
+          inView && "aurora-layer--active",
           showRadialGradient &&
             `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`,
         )}
