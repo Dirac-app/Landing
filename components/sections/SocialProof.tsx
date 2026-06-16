@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
       ". I switched and haven't looked back.",
     ],
     name: "Pin Zhou",
-    role: "Entrepreneur | Agency owner",
+    role: "Entrepreneur | Founder of Beebee Ai",
     handle: "@pin-zhou",
     handleHref: "https://linkedin.com/in/pin-zhou-800529133",
   },

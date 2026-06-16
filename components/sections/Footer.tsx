@@ -1,4 +1,5 @@
 import { BuiltByNerodyn } from "@/components/ui/built-by-nerodyn";
+import { DiracLogoMark } from "@/components/ui/dirac-logo";
 import { SIGNUP_URL } from "@/lib/urls";
 
 export function Footer() {
@@ -11,9 +12,7 @@ export function Footer() {
           {/* Left */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-md border border-white/10 bg-white/4 flex items-center justify-center text-[10px] text-white/20 font-mono">
-                D
-              </div>
+              <DiracLogoMark size="sm" />
               <span
                 className="text-sm font-semibold text-white/60"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}
@@ -27,6 +26,36 @@ export function Footer() {
             <p className="text-xs text-white/18 mt-2">
               © {year} Dirac. All rights reserved.
             </p>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <a
+                href="https://twelve.tools"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-badge"
+              >
+                <img
+                  src="https://twelve.tools/badge1-dark.svg"
+                  alt="Featured on Twelve Tools"
+                  width={200}
+                  height={54}
+                  className="h-7 w-auto"
+                />
+              </a>
+              <a
+                href="https://www.producthunt.com/products/dirac-3?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-dirac-4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-badge"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1167329&theme=dark&t=1781598802634"
+                  alt="Dirac - The AI inbox that briefs founders every morning | Product Hunt"
+                  width={250}
+                  height={54}
+                  className="h-7 w-auto"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Right */}

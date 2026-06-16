@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,6 +37,10 @@ export const metadata: Metadata = {
   title: "dirac - your intelligent email",
   description:
     "Dirac is an AI email client that reads your inbox, learns your voice, and delivers a morning brief with summaries, priorities, and ready-to-send drafts.",
+  icons: {
+    icon: "/dirac-logo.png",
+    apple: "/dirac-logo.png",
+  },
   openGraph: {
     title: "dirac - your intelligent email",
     description:
@@ -55,6 +60,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-black text-white antialiased overflow-x-hidden">
+        <ScrollProgress />
         {children}
       </body>
     </html>

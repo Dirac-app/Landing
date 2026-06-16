@@ -329,6 +329,49 @@ main section:not(#hero) {
   gap: 8px;
 }
 
+/* Footer directory / launch badges — muted on dark bg */
+.footer-badge {
+  opacity: 0.28;
+  filter: brightness(0.72);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.footer-badge:hover {
+  opacity: 0.45;
+  filter: brightness(0.88);
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 2px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(
+    to right,
+    var(--color-accent-deep),
+    var(--color-accent),
+    var(--color-accent-light)
+  );
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.45);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+}
+
 .why-us-carousel-mask {
   -webkit-mask-image: linear-gradient(
     to right,

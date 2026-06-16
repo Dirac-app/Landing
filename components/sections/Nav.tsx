@@ -17,13 +17,7 @@ export function Nav() {
   return (
     <nav className="nav-bar fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2.5 group">
-          <div
-            className="w-7 h-7 rounded-lg border border-white/15 bg-white/5 flex items-center justify-center text-xs text-white/30 font-mono"
-            aria-label="Dirac logo placeholder"
-          >
-            D
-          </div>
+        <a href="/" className="group" aria-label="Dirac home">
           <span
             className="text-white text-[17px] font-semibold tracking-tight"
             style={{ fontFamily: "var(--font-space-grotesk)" }}
