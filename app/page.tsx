@@ -8,7 +8,6 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/sections/Footer";
 import { ActDivider } from "@/components/ui/act-divider";
-import { GlowDivider } from "@/components/ui/glow-divider";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
       <Nav />
       <main className="overflow-x-hidden">
         <Hero />
-        <GlowDivider />
 
         <div className="bg-black">
           <Solutions />

@@ -18,7 +18,7 @@ export function Solutions() {
   ];
 
   return (
-    <section className="py-28 md:py-36" id="solutions">
+    <section className="pt-14 pb-28 md:pt-16 md:pb-36" id="solutions">
       <div className="max-w-7xl mx-auto px-6">
         <SectionEyebrow className="mb-6">The problem</SectionEyebrow>
 

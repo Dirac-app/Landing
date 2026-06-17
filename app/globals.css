@@ -341,6 +341,60 @@ main section:not(#hero) {
   filter: brightness(0.88);
 }
 
+.hero-demo-video-wrap {
+  position: relative;
+  line-height: 0;
+}
+
+.hero-demo-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  content-visibility: auto;
+  contain: layout style paint;
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.75) 2%,
+      black 3.5%,
+      black 96.5%,
+      rgba(0, 0, 0, 0.75) 98%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.75) 1.5%,
+      black 3%,
+      black 97%,
+      rgba(0, 0, 0, 0.75) 98.5%,
+      transparent 100%
+    );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.75) 2%,
+      black 3.5%,
+      black 96.5%,
+      rgba(0, 0, 0, 0.75) 98%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.75) 1.5%,
+      black 3%,
+      black 97%,
+      rgba(0, 0, 0, 0.75) 98.5%,
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
 .scroll-progress {
   position: fixed;
   top: 0;
