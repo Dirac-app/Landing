@@ -120,12 +120,6 @@ h3,
   font-variation-settings: "SOFT" 90, "WONK" 0;
 }
 
-/* Fixed nav — white, no blur */
-.nav-bar {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid var(--color-border);
-}
-
 /* Reusable solid panel */
 .panel-card {
   border: 1px solid var(--color-border);
@@ -151,15 +145,23 @@ h3,
   --hero-bg-pos-y: 48%;
   /* < 1 zooms out (shows more scene); 1 = standard cover */
   --hero-bg-scale: 0.68;
-
-  /* Radial white edge fade */
-  --hero-mask-size-x: 78%;
-  --hero-mask-size-y: 88%;
-  --hero-mask-x: 50%;
-  --hero-mask-y: 42%;
-  --hero-mask-solid: 32%;
-  --hero-mask-fade: 92%;
   --hero-brightness: 1.05;
+
+  /*
+   * Asymmetric fade-to-white mask.
+   * Ellipse is wide + biased toward the top, so: top/upper-center stays
+   * near-solid, sides fade in gently, and the bottom (outside/edge of the
+   * ellipse) reaches transparent soonest — combined with the linear bottom
+   * fade below for a heavier, gradual dissolve at the base.
+   */
+  --hero-mask-size-x: 95%;
+  --hero-mask-size-y: 80%;
+  --hero-mask-x: 50%;
+  --hero-mask-y: 35%;
+  --hero-mask-stop-solid: 40%;   /* fully visible up to here */
+  --hero-mask-stop-mid: 75%;     /* partial fade checkpoint */
+  --hero-mask-mid-opacity: 0.4;  /* opacity at the mid checkpoint */
+  --hero-mask-stop-out: 100%;    /* fully transparent by here */
 
   /* Demo panel — width, shadow & distance from bottom of hero */
   --hero-demo-max-width: min(72rem, 80vw);
@@ -167,12 +169,18 @@ h3,
   --hero-demo-height-est: calc(var(--hero-demo-width) * 9 / 16);
   --hero-demo-shadow: 0 4px 20px rgba(31, 27, 24, 0.1), 0 16px 48px rgba(31, 27, 24, 0.08);
   --hero-demo-bottom: clamp(2rem, 5vh, 3.5rem);
-  --hero-demo-gap-top: clamp(1.5rem, 4vh, 2.5rem);
+  --hero-demo-gap-top: clamp(2.75rem, calc(4vh + 20px), 3.75rem);
 
-  /* Bottom fade — transition starts ~midpoint of demo frame, ends #fff at base */
+  /*
+   * Bottom fade (heaviest edge) — image reads as fully gone by roughly
+   * this fraction into the demo panel's height (0.55–0.65 recommended).
+   */
+  --hero-bottom-fade-fraction: 0.6;
   --hero-bottom-fade-stop: calc(
-    var(--hero-demo-bottom) + var(--hero-demo-height-est) * 0.5
+    var(--hero-demo-bottom) + var(--hero-demo-height-est) * var(--hero-bottom-fade-fraction)
   );
+  /* How far up from the very base the fade starts turning solid white */
+  --hero-bottom-fade-base: max(0px, calc(var(--hero-demo-bottom) * 0.25));
 }
 
 .hero-bg-layer {
@@ -195,14 +203,16 @@ h3,
   -webkit-mask-image: radial-gradient(
     ellipse var(--hero-mask-size-x) var(--hero-mask-size-y) at var(--hero-mask-x)
       var(--hero-mask-y),
-    #000 var(--hero-mask-solid),
-    transparent var(--hero-mask-fade)
+    #000 var(--hero-mask-stop-solid),
+    rgba(0, 0, 0, var(--hero-mask-mid-opacity)) var(--hero-mask-stop-mid),
+    transparent var(--hero-mask-stop-out)
   );
   mask-image: radial-gradient(
     ellipse var(--hero-mask-size-x) var(--hero-mask-size-y) at var(--hero-mask-x)
       var(--hero-mask-y),
-    #000 var(--hero-mask-solid),
-    transparent var(--hero-mask-fade)
+    #000 var(--hero-mask-stop-solid),
+    rgba(0, 0, 0, var(--hero-mask-mid-opacity)) var(--hero-mask-stop-mid),
+    transparent var(--hero-mask-stop-out)
   );
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
@@ -210,6 +220,7 @@ h3,
   mask-repeat: no-repeat;
 }
 
+/* Extra heavy, gradual dissolve at the very bottom, layered on top of the image */
 .hero-bg-bottom-fade {
   position: absolute;
   inset: 0;
@@ -217,7 +228,7 @@ h3,
   background: linear-gradient(
     to top,
     #ffffff 0px,
-    #ffffff max(0px, calc(var(--hero-demo-bottom) * 0.25)),
+    #ffffff var(--hero-bottom-fade-base),
     transparent var(--hero-bottom-fade-stop)
   );
 }
@@ -257,6 +268,21 @@ h3,
 
 #hero .hero-demo-video {
   box-shadow: var(--hero-demo-shadow);
+}
+
+.waitlist-survey-card {
+  animation: waitlist-survey-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes waitlist-survey-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Defer layout/paint for below-fold sections during scroll */

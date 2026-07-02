@@ -1,8 +1,5 @@
-import { ArrowRight } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { HeroDemoVideo } from "@/components/ui/hero-demo-video";
-import { SIGNUP_URL } from "@/lib/urls";
+import { HeroWaitlistCta } from "@/components/ui/hero-waitlist-cta";
 
 export function Hero() {
   return (
@@ -12,10 +9,10 @@ export function Hero() {
     >
       <div className="hero-bg-layer" aria-hidden>
         <img
-          src="/Dirac_Landing_BG.png"
+          src="/Dirac_New_BG.png"
           alt=""
-          width={2528}
-          height={1696}
+          width={2752}
+          height={1536}
           className="hero-bg-image"
           fetchPriority="high"
         />
@@ -34,11 +31,7 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col items-center md:mt-10">
-            <Button href={SIGNUP_URL} size="md">
-              Get Started
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Button>
-            <p className="mt-3 text-sm text-muted">7-day free trial</p>
+            <HeroWaitlistCta />
           </div>
         </div>
 

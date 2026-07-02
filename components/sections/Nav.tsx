@@ -3,9 +3,6 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { SIGNUP_URL } from "@/lib/urls";
-
 const links = [
   { href: "#product", label: "Product" },
   { href: "#why", label: "Why" },
@@ -17,34 +14,28 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="nav-bar fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      <div className="mx-auto flex h-16 max-w-7xl items-center px-6">
         <a href="/" className="group" aria-label="Dirac home">
-          <span className="font-serif text-[17px] font-medium tracking-tight text-ink">
+          <span className="font-serif text-[17px] font-medium tracking-tight text-white">
             Dirac
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="ml-14 hidden items-center gap-12 md:flex">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted hover:text-ink transition-colors duration-200"
+              className="text-sm font-medium text-white/90 transition-colors duration-200 hover:text-white"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden md:block">
-          <Button href={SIGNUP_URL} size="sm">
-            Signup Today
-          </Button>
-        </div>
-
         <button
-          className="md:hidden text-muted hover:text-ink transition-colors"
+          className="ml-auto text-white/90 transition-colors hover:text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -53,25 +44,19 @@ export function Nav() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-white px-6 py-5 flex flex-col gap-4">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted hover:text-ink transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <Button
-            href={SIGNUP_URL}
-            size="md"
-            className="mt-2 w-full"
-            onClick={() => setMobileOpen(false)}
-          >
-            Signup Today
-          </Button>
+        <div className="border-t border-border/40 bg-white/90 px-6 py-5 backdrop-blur-sm md:hidden">
+          <div className="flex flex-col gap-4">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-ink/75 transition-colors hover:text-ink"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </nav>
