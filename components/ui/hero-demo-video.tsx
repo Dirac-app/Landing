@@ -1,10 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+
+import { cn } from "@/lib/utils";
 import { useInView } from "@/hooks/use-in-view";
 
-export function HeroDemoVideo() {
-  const { ref, inView } = useInView<HTMLDivElement>({ rootMargin: "80px" });
+type HeroDemoVideoProps = {
+  className?: string;
+};
+
+export function HeroDemoVideo({ className }: HeroDemoVideoProps) {
+  const { ref, inView } = useInView<HTMLDivElement>({
+    rootMargin: "0px",
+    threshold: 0.35,
+  });
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -33,18 +42,17 @@ export function HeroDemoVideo() {
   }, [inView]);
 
   return (
-    <div ref={ref} className="hero-demo-video-wrap mt-10 md:mt-12 mx-auto w-full max-w-5xl">
+    <div ref={ref} className={cn("hero-demo-video-wrap w-full", className)}>
       <video
         ref={videoRef}
-        className="hero-demo-video"
-        autoPlay
+        className="hero-demo-video aspect-video w-full rounded-2xl object-cover md:rounded-[1.25rem]"
         loop
         muted
         playsInline
         preload="none"
         aria-label="Dirac product demo"
       >
-        <source src="/dirac-website-demo.mp4" type="video/mp4" />
+        <source src="/dirac-hero-demo.mp4" type="video/mp4" />
       </video>
     </div>
   );

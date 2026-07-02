@@ -1,7 +1,10 @@
 "use client";
 
-import { useState, KeyboardEvent } from "react";
 import { ArrowRight, ArrowLeft, Loader2, Check } from "lucide-react";
+import { useState, KeyboardEvent } from "react";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { SIGNUP_URL } from "@/lib/urls";
 
 type Answers = {
@@ -81,10 +84,10 @@ const QUESTIONS: Question[] = [
   },
 ];
 
-const TOTAL_STEPS = QUESTIONS.length + 1; // email + questions
+const TOTAL_STEPS = QUESTIONS.length + 1;
 
 export function WaitlistForm() {
-  const [step, setStep] = useState<number>(0); // 0 = email, 1..n = questions, n+1 = done
+  const [step, setStep] = useState<number>(0);
   const [email, setEmail] = useState("");
   const [answers, setAnswers] = useState<Answers>({ ...EMPTY });
   const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "error">("idle");
@@ -112,7 +115,7 @@ export function WaitlistForm() {
 
   async function advanceOrSubmit() {
     if (!currentQuestion) return;
-    if (!answers[currentQuestion.key]) return; // must select something
+    if (!answers[currentQuestion.key]) return;
 
     if (isLastQuestion) {
       await submit();
@@ -131,7 +134,7 @@ export function WaitlistForm() {
       });
       const data = await res.json();
       if (res.ok) {
-        setStep(TOTAL_STEPS); // done
+        setStep(TOTAL_STEPS);
       } else if (res.status === 409) {
         setSubmitStatus("error");
         setErrorMsg("That email is already on the waitlist.");
@@ -146,15 +149,14 @@ export function WaitlistForm() {
     if (submitStatus !== "idle") setSubmitStatus("idle");
   }
 
-  // Done state
   if (step === TOTAL_STEPS) {
     return (
       <div className="flex flex-col gap-4 max-w-[440px]">
-        <div className="flex items-center gap-3 rounded-xl accent-border-subtle bg-accent/8 px-5 py-4" style={{ ["--accent-fill" as string]: "rgba(249, 115, 22, 0.08)" }}>
-          <div className="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20 shrink-0">
-            <Check className="h-3 w-3 text-accent-light" />
+        <div className="panel-card flex items-center gap-3 px-5 py-4">
+          <div className="flex items-center justify-center w-5 h-5 rounded-full bg-canvas shrink-0">
+            <Check className="h-3 w-3 text-ink" />
           </div>
-          <span className="text-accent-light text-sm font-medium">
+          <span className="text-sm font-medium text-ink">
             You&apos;re on the list. We&apos;ll be in touch.
           </span>
         </div>
@@ -162,7 +164,6 @@ export function WaitlistForm() {
     );
   }
 
-  // Email step
   if (step === 0) {
     return (
       <div className="flex flex-col gap-3 max-w-[440px]" id="waitlist">
@@ -177,66 +178,48 @@ export function WaitlistForm() {
             onKeyDown={handleEmailKeyDown}
             placeholder="your@email.com"
             autoComplete="email"
-            className="flex-1 h-12 rounded-xl border border-white/10 bg-white/4 px-4 text-sm text-white placeholder:text-white/25 outline-none focus:border-white/20 focus:bg-white/6 transition-all duration-200"
+            className="flex-1 h-12 rounded-xl border border-border bg-panel px-4 text-sm text-ink placeholder:text-muted/60 outline-none focus:ring-1 focus:ring-border transition-all duration-200"
           />
-          <a
-            href={SIGNUP_URL}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl btn-accent px-6 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] whitespace-nowrap"
-          >
+          <Button href={SIGNUP_URL} size="md" className="whitespace-nowrap">
             Get Started
-            <ArrowRight className="h-4 w-4" />
-          </a>
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Button>
         </div>
-        {errorMsg && <p className="text-sm text-red-400/80 pl-1">{errorMsg}</p>}
-        <a
-          href="#demo"
-          className="inline-flex items-center gap-1.5 text-sm text-white/30 hover:text-white/55 transition-colors duration-200 pl-1 mt-1 w-fit"
-        >
+        {errorMsg && <p className="text-sm text-red-600/80 pl-1">{errorMsg}</p>}
+        <Button href="#demo" variant="link" className="pl-1 mt-1 w-fit">
           or see a demo
-          <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+        </Button>
       </div>
     );
   }
 
-  // MCQ steps
   if (!currentQuestion) return null;
 
   const selectedValue = answers[currentQuestion.key];
   const canAdvance = !!selectedValue;
 
   return (
-    <div className="flex flex-col gap-6 max-w-[500px]" id="waitlist">
-      {/* Progress */}
+    <div className="flex flex-col gap-6 max-w-[500px] panel-card p-6 md:p-7" id="waitlist">
       <div className="flex items-center gap-2">
         <div className="flex gap-1.5">
           {QUESTIONS.map((_, i) => (
             <div
               key={i}
-              className="h-0.5 rounded-full transition-all duration-300"
-              style={{
-                width: i < step - 1 ? 20 : i === step - 1 ? 20 : 12,
-                background:
-                  i < step - 1
-                    ? "var(--accent-progress-done)"
-                    : i === step - 1
-                    ? "var(--color-accent)"
-                    : "rgba(255,255,255,0.12)",
-              }}
+              className={cn(
+                "h-0.5 rounded-full transition-all duration-300",
+                i < step - 1 ? "w-5 bg-ink/30" : i === step - 1 ? "w-5 bg-ink" : "w-3 bg-border",
+              )}
             />
           ))}
         </div>
-        <span className="text-xs text-white/25 ml-1">
+        <span className="text-xs text-muted ml-1">
           {step} / {QUESTIONS.length}
         </span>
       </div>
 
-      {/* Question */}
       <div>
-        <p
-          className="text-lg font-semibold text-white leading-snug mb-5"
-          style={{ fontFamily: "var(--font-space-grotesk)" }}
-        >
+        <p className="font-serif text-lg font-medium text-ink leading-snug mb-5">
           {currentQuestion.label}
         </p>
 
@@ -246,14 +229,14 @@ export function WaitlistForm() {
             return (
               <button
                 key={opt}
+                type="button"
                 onClick={() => selectOption(currentQuestion.key, opt)}
-                className="rounded-xl border px-4 py-2.5 text-sm transition-all duration-150 text-left"
-                style={{
-                  borderColor: selected ? "#ffffff" : "rgba(255,255,255,0.10)",
-                  background: selected ? "#ffffff" : "rgba(255,255,255,0.03)",
-                  color: selected ? "#000000" : "rgba(255,255,255,0.60)",
-                  fontWeight: selected ? 600 : 400,
-                }}
+                className={cn(
+                  "rounded-xl border px-4 py-2.5 text-sm transition-all duration-150 text-left",
+                  selected
+                    ? "border-ink/20 bg-canvas text-ink font-medium"
+                    : "border-border bg-panel text-muted hover:text-ink",
+                )}
               >
                 {opt}
               </button>
@@ -262,20 +245,21 @@ export function WaitlistForm() {
         </div>
       </div>
 
-      {/* Nav */}
       <div className="flex items-center gap-3">
-        <button
+        <Button
+          variant="secondary"
+          size="sm"
           onClick={() => setStep((s) => s - 1)}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 text-white/40 hover:text-white/70 hover:border-white/20 transition-all duration-150"
+          className="w-9 px-0"
           aria-label="Go back"
         >
           <ArrowLeft className="h-4 w-4" />
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={advanceOrSubmit}
           disabled={!canAdvance || submitStatus === "loading"}
-          className="inline-flex h-9 items-center gap-2 rounded-xl btn-accent px-5 text-sm font-semibold text-black transition-all duration-150 hover:opacity-90 active:scale-[0.98] disabled:opacity-30"
+          size="sm"
         >
           {submitStatus === "loading" ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -290,10 +274,10 @@ export function WaitlistForm() {
               <ArrowRight className="h-4 w-4" />
             </>
           )}
-        </button>
+        </Button>
 
         {submitStatus === "error" && (
-          <p className="text-xs text-red-400/80">{errorMsg}</p>
+          <p className="text-xs text-red-600/80">{errorMsg}</p>
         )}
       </div>
     </div>

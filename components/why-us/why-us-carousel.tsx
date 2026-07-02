@@ -4,8 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { whyUsSlides, type BodyPart } from "@/components/why-us/slides";
 
-const titleFont = { fontFamily: "var(--font-space-grotesk)" };
-
 /** Full loop duration at normal speed (~52s). */
 const LOOP_DURATION_MS = 52_000;
 /** Full loop duration while hovered — near-still crawl (~6 min). */
@@ -15,7 +13,7 @@ const SPEED_LERP = 0.06;
 
 function SlideBody({ parts }: { parts: BodyPart[] }) {
   return (
-    <p className="text-sm leading-relaxed text-white/45">
+    <p className="text-sm leading-relaxed text-muted">
       {parts.map((part, index) =>
         typeof part === "string" ? (
           <span key={index}>{part}</span>
@@ -35,20 +33,16 @@ function WhyUsSlideCard({
   icon: Icon,
 }: (typeof whyUsSlides)[number]) {
   return (
-    <article className="why-us-slide group/slide relative z-10 flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#0a0a0a] p-6 hover:border-white/[0.14] md:p-7">
+    <article className="why-us-slide group/slide panel-card relative z-10 flex flex-col overflow-hidden p-6 md:p-7">
       <div
-        className="why-us-slide-sheen pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.07] via-white/[0.02] to-transparent opacity-80"
-        aria-hidden
-      />
-      <div
-        className="why-us-slide-icon pointer-events-none absolute -right-6 -bottom-8 text-white/[0.06]"
+        className="why-us-slide-icon pointer-events-none absolute -right-6 -bottom-8 text-ink/[0.04]"
         aria-hidden
       >
         <Icon className="h-36 w-36 stroke-[1.25]" />
       </div>
 
       <div className="relative z-10 flex min-h-0 flex-1 flex-col">
-        <h3 className="mb-3 shrink-0 text-lg font-semibold text-white" style={titleFont}>
+        <h3 className="mb-3 shrink-0 font-serif text-lg font-medium text-ink">
           {title}
         </h3>
         <SlideBody parts={body} />

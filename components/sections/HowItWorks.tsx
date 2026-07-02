@@ -1,4 +1,5 @@
 import { SectionEyebrow } from "@/components/ui/section-eyebrow";
+import { SectionShell } from "@/components/ui/section-shell";
 
 const steps = [
   {
@@ -20,51 +21,28 @@ const steps = [
   },
 ];
 
-const titleFont = { fontFamily: "var(--font-space-grotesk)" };
-
 export function HowItWorks() {
   return (
-    <section className="py-24 md:py-36" id="how-it-works">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionEyebrow className="mb-6">How it works</SectionEyebrow>
+    <SectionShell id="how-it-works" tone="panel">
+      <SectionEyebrow className="mb-6">How it works</SectionEyebrow>
 
-        <h2
-          className="text-3xl md:text-4xl lg:text-[44px] font-semibold text-white leading-tight tracking-tight mb-16 md:mb-20 max-w-2xl"
-          style={titleFont}
-        >
-          Up and running in one afternoon.
-        </h2>
+      <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] font-medium text-ink leading-[1.1] tracking-tight mb-14 md:mb-20 max-w-2xl">
+        Up and running in one <span className="editorial-highlight">afternoon</span>.
+      </h2>
 
-        {/* Hero moment: connected step path on desktop */}
-        <div className="relative">
-          <div
-            className="hidden md:block absolute top-[52px] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
-            aria-hidden
-          />
-
-          <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-            {steps.map((step, i) => (
-              <div key={step.number} className="relative flex flex-col">
-                <div className="flex items-center gap-3 mb-6">
-                  <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-xs font-medium text-accent tabular-nums"
-                    style={{ fontFamily: "var(--font-geist-mono), ui-monospace, monospace" }}
-                  >
-                    {step.number}
-                  </span>
-                  {i < steps.length - 1 && (
-                    <span className="hidden md:block flex-1 h-px bg-white/6" aria-hidden />
-                  )}
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4 leading-snug" style={titleFont}>
-                  {step.headline}
-                </h3>
-                <p className="text-white/40 text-sm leading-relaxed">{step.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        {steps.map((step) => (
+          <article key={step.number} className="panel-card p-7 md:p-8 flex flex-col">
+            <span className="text-sm text-muted font-mono tabular-nums tracking-widest mb-6">
+              {step.number}
+            </span>
+            <h3 className="font-serif text-xl font-medium text-ink mb-4 leading-snug">
+              {step.headline}
+            </h3>
+            <p className="text-muted text-sm leading-relaxed">{step.body}</p>
+          </article>
+        ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

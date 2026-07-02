@@ -6,7 +6,7 @@ const LAST_UPDATED = "June 1, 2026";
 export function TermsContent() {
   return (
     <LegalPageLayout title="Terms of Service" lastUpdated={LAST_UPDATED}>
-      <p className="text-sm text-white/50 leading-relaxed mb-10">
+      <p className="text-sm text-muted leading-relaxed mb-10">
         These Terms of Service (&quot;Terms&quot;) govern your access to and use of Dirac, an
         AI-native email client operated by Dirac, including dirac.app and app.dirac.app (the
         &quot;Service&quot;). By using Dirac, you agree to these Terms.
@@ -24,7 +24,7 @@ export function TermsContent() {
         <p>
           You are responsible for maintaining the confidentiality of your account credentials and
           for all activity under your account. Notify us promptly at{" "}
-          <a href="mailto:peter@dirac.app" className="text-white/70 hover:text-white transition-colors">
+          <a href="mailto:peter@dirac.app" className="text-ink hover:text-muted transition-colors">
             peter@dirac.app
           </a>{" "}
           if you suspect unauthorized access.
@@ -129,7 +129,7 @@ export function TermsContent() {
       <LegalSection title="Contact">
         <p>
           Questions about these Terms? Contact Dirac at{" "}
-          <a href="mailto:peter@dirac.app" className="text-white/70 hover:text-white transition-colors">
+          <a href="mailto:peter@dirac.app" className="text-ink hover:text-muted transition-colors">
             peter@dirac.app
           </a>
           .

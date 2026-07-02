@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import {
+  Fraunces,
+  Geist,
+  Geist_Mono,
+  Inter,
+  JetBrains_Mono,
+  Space_Grotesk,
+} from "next/font/google";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["SOFT", "WONK"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,9 +71,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-black text-white antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-white text-ink antialiased overflow-x-hidden">
         <ScrollProgress />
         {children}
       </body>

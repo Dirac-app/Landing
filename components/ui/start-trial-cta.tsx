@@ -1,4 +1,6 @@
 import { ArrowRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import { SIGNUP_URL } from "@/lib/urls";
 
 type StartTrialCtaProps = {
@@ -15,21 +17,20 @@ export function StartTrialCta({ id, centered = false }: StartTrialCtaProps) {
       <div
         className={`flex flex-col sm:flex-row gap-3 ${centered ? "sm:justify-center" : ""}`}
       >
-        <a
-          href={SIGNUP_URL}
-          className="inline-flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl btn-primary px-8 text-sm font-semibold"
-        >
+        <Button href={SIGNUP_URL} size="md" className="w-full sm:w-auto">
           Get Started
-          <ArrowRight className="h-4 w-4" />
-        </a>
-        <a
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Button>
+        <Button
           href="/#product"
-          className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl px-8 text-sm font-semibold text-white/60 hover:text-white transition-colors duration-200"
+          variant="secondary"
+          size="md"
+          className="w-full sm:w-auto"
         >
           See the product
-        </a>
+        </Button>
       </div>
-      <p className={`text-sm text-white/30 ${centered ? "" : "pl-1"}`}>
+      <p className={`text-sm text-muted ${centered ? "" : "pl-1"}`}>
         7-day free trial
       </p>
     </div>

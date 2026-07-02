@@ -2,47 +2,50 @@ import { ByInstruction } from "@/components/sections/ByInstruction";
 import { VoiceLearning } from "@/components/sections/VoiceLearning";
 import { WhatMatters } from "@/components/sections/WhatMatters";
 import { SectionEyebrow } from "@/components/ui/section-eyebrow";
-import { Spotlight } from "@/components/ui/spotlight";
+import { SectionShell } from "@/components/ui/section-shell";
 
 const panels = [
   {
     id: "product-triage",
     number: "01",
     label: "What Matters",
-    headline: "You only see what needs you.",
+    headline: (
+      <>
+        You only see what <span className="editorial-highlight">needs you</span>.
+      </>
+    ),
     body:
       "Stop guessing which emails deserve your attention. Dirac surfaces the threads that actually need your judgment — deals, investors, customers — and handles the rest before you wake up.",
     align: "right" as const,
-    spotlight: {
-      className: "top-0 left-0 hidden md:block",
-      transform: "scaleX(-1) rotate(-12deg)",
-    },
+    tone: "canvas" as const,
   },
   {
     id: "product-voice",
     number: "02",
     label: "Voice Learning",
-    headline: "Replies that sound like you wrote them.",
+    headline: (
+      <>
+        Replies that <span className="editorial-highlight">sound like you</span> wrote them.
+      </>
+    ),
     body:
       "No generic AI tone. Dirac learns how you actually write from your sent mail, then drafts replies you can send with one tap — calibrated to your voice, not a template.",
     align: "left" as const,
-    spotlight: {
-      className: "-top-10 right-0 hidden md:block",
-      transform: "rotate(22deg)",
-    },
+    tone: "panel" as const,
   },
   {
     id: "product-instruction",
     number: "03",
     label: "By Instruction",
-    headline: "Manage your inbox in plain English.",
+    headline: (
+      <>
+        Manage your inbox in <span className="editorial-highlight">plain English</span>.
+      </>
+    ),
     body:
       'Tell Dirac what you want: "star anything from investors," "archive newsletters from last month." It finds the threads, prepares the action, and waits for your one tap to apply.',
     align: "right" as const,
-    spotlight: {
-      className: "top-1/4 left-0 hidden md:block",
-      transform: "scaleX(-1) rotate(8deg)",
-    },
+    tone: "canvas" as const,
   },
 ];
 
@@ -53,79 +56,58 @@ function ProductVisual({ label }: { label: string }) {
   return null;
 }
 
-const titleFont = { fontFamily: "var(--font-space-grotesk)" };
-const monoFont = { fontFamily: "var(--font-geist-mono), ui-monospace, monospace" };
-
 export function Product() {
   return (
     <div id="product" className="overflow-x-hidden">
-      <section className="py-16 md:py-32 border-t-2 border-white/[0.05]">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionEyebrow className="mb-6">The product</SectionEyebrow>
-          <h2
-            className="text-3xl md:text-4xl lg:text-[44px] font-semibold text-white leading-tight tracking-tight mb-5 max-w-3xl"
-            style={titleFont}
-          >
-            See what Dirac does while you sleep.
-          </h2>
-          <p className="text-white/45 text-base md:text-lg leading-relaxed max-w-2xl">
-            Your inbox is read, prioritized, and drafted before you open your laptop. You step in
-            only where your judgment matters.
-          </p>
-        </div>
-      </section>
+      <SectionShell tone="panel" className="pb-16 md:pb-20">
+        <SectionEyebrow className="mb-6">The product</SectionEyebrow>
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] font-medium text-ink leading-[1.1] tracking-tight mb-6 max-w-3xl">
+          See what Dirac does while you{" "}
+          <span className="editorial-highlight">sleep</span>.
+        </h2>
+        <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl">
+          Your inbox is read, prioritized, and drafted before you open your laptop. You step in
+          only where your judgment matters.
+        </p>
+      </SectionShell>
 
-      {panels.map((panel, i) => (
-        <section
+      {panels.map((panel) => (
+        <SectionShell
           key={panel.id}
           id={panel.id}
-          className={`relative overflow-hidden py-12 md:py-24 ${i > 0 ? "border-t-2 border-white/[0.05]" : ""}`}
+          tone={panel.tone}
+          className="py-20 md:py-28"
         >
-          <Spotlight
-            className={panel.spotlight.className}
-            transform={panel.spotlight.transform}
-          />
-
-          <div className="relative z-10 max-w-7xl mx-auto px-6">
-            <div
-              className={`flex flex-col gap-10 md:grid md:grid-cols-2 md:gap-20 md:items-center ${
-                panel.align === "right"
-                  ? "md:[&>:first-child]:order-2 md:[&>:last-child]:order-1"
-                  : ""
-              }`}
-            >
-              <div className="flex flex-col min-w-0">
-                <div className="flex items-baseline gap-3 mb-5">
-                  <span
-                    className="text-sm text-accent tabular-nums tracking-widest"
-                    style={monoFont}
-                  >
-                    {panel.number}
-                  </span>
-                  <span className="text-xs text-white/25 uppercase tracking-widest font-medium">
-                    {panel.label}
-                  </span>
-                </div>
-                <h3
-                  className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight mb-5"
-                  style={titleFont}
-                >
-                  {panel.headline}
-                </h3>
-                <p className="text-white/45 text-base leading-relaxed max-w-[400px]">
-                  {panel.body}
-                </p>
+          <div
+            className={`flex flex-col gap-12 md:grid md:grid-cols-2 md:gap-16 lg:gap-24 md:items-center ${
+              panel.align === "right"
+                ? "md:[&>:first-child]:order-2 md:[&>:last-child]:order-1"
+                : ""
+            }`}
+          >
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-baseline gap-3 mb-6">
+                <span className="text-sm text-muted font-mono tabular-nums tracking-widest">
+                  {panel.number}
+                </span>
+                <span className="text-xs text-muted uppercase tracking-widest font-medium">
+                  {panel.label}
+                </span>
               </div>
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-[2rem] font-medium text-ink leading-[1.12] mb-6">
+                {panel.headline}
+              </h3>
+              <p className="text-muted text-base md:text-[1.05rem] leading-relaxed max-w-md">
+                {panel.body}
+              </p>
+            </div>
 
-              <div className="w-full max-w-[440px] mx-auto md:mx-0 min-w-0">
-                <ProductVisual label={panel.label} />
-              </div>
+            <div className="w-full max-w-[440px] mx-auto md:mx-0 min-w-0">
+              <ProductVisual label={panel.label} />
             </div>
           </div>
-        </section>
+        </SectionShell>
       ))}
-
-      <div className="h-8 md:h-12" aria-hidden />
     </div>
   );
 }

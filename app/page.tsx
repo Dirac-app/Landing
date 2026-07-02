@@ -1,3 +1,4 @@
+import { PageFrame } from "@/components/ui/page-frame";
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { Solutions } from "@/components/sections/Solutions";
@@ -7,29 +8,22 @@ import { WhyUs } from "@/components/sections/WhyUs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/sections/Footer";
-import { ActDivider } from "@/components/ui/act-divider";
 
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main className="overflow-x-hidden">
-        <Hero />
-
-        <div className="bg-black">
+      <PageFrame>
+        <Nav />
+        <main className="overflow-x-hidden">
+          <Hero />
           <Solutions />
-          <ActDivider />
           <Product />
-          <ActDivider />
           <SocialProof />
-          <ActDivider />
           <WhyUs />
-          <ActDivider />
           <FinalCTA />
-          <ActDivider />
           <FAQ />
-        </div>
-      </main>
+        </main>
+      </PageFrame>
       <Footer />
     </>
   );

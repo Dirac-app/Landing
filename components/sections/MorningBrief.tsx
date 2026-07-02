@@ -1,172 +1,95 @@
 import { MousePointer2, Send } from "lucide-react";
 
-const mono = "var(--font-geist-mono), ui-monospace, monospace";
-const title = "var(--font-space-grotesk), sans-serif";
-
-const panelMask = {
-  maskImage:
-    "linear-gradient(to bottom, #000000 0%, #000000 72%, rgba(0,0,0,0.9) 84%, transparent 100%)",
-  WebkitMaskImage:
-    "linear-gradient(to bottom, #000000 0%, #000000 72%, rgba(0,0,0,0.9) 84%, transparent 100%)",
-};
+import { AttentionBadge } from "@/components/ui/attention-badge";
+import { UiMockFrame } from "@/components/ui/ui-mock-frame";
 
 export function MorningBrief() {
   return (
-    <div className="relative z-[1] w-full max-w-[500px] mx-auto">
-      <div
-        className="relative rounded-t-2xl border border-white/[0.06] bg-black px-7 pt-7 pb-6"
-        style={panelMask}
-      >
-        <div className="mb-7">
-          <div
-            className="text-[22px] font-medium text-[#FAFAF7] tracking-tight mb-1.5"
-            style={{ fontFamily: title }}
-          >
+    <div className="w-full max-w-[500px] mx-auto">
+      <UiMockFrame innerClassName="p-5 md:p-6">
+        <div className="mb-6">
+          <h3 className="font-serif text-[22px] font-medium text-ink tracking-tight mb-1.5">
             Morning Brief
+          </h3>
+          <p className="text-[11px] text-muted tracking-widest font-mono uppercase">
+            7:00 AM · 38 emails processed
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-border bg-canvas/50 p-4 mb-4">
+          <div className="mb-2.5">
+            <AttentionBadge className="tracking-widest uppercase text-[10px]">
+              Needs reply
+            </AttentionBadge>
           </div>
-          <div className="text-[11px] text-[#6B6862] tracking-widest" style={{ fontFamily: mono }}>
-            7:00 AM &nbsp;·&nbsp; 38 EMAILS PROCESSED
+
+          <p className="text-[15px] font-medium text-ink mb-1 tracking-tight">
+            Sequoia term sheet — respond by EOD
+          </p>
+          <p className="text-[10px] text-muted tracking-widest font-mono uppercase mb-3">
+            Johnny Porkens · 2 hours ago
+          </p>
+          <div className="h-px bg-border mb-3" />
+
+          <p className="text-[13px] text-muted leading-relaxed mb-4">
+            Johnny confirmed terms and wants a signed copy by end of day. He&apos;s also asking if
+            you can hop on a call Friday to discuss the board seat.
+          </p>
+
+          <div className="rounded-lg border border-border bg-panel p-3.5 mb-3.5">
+            <div className="flex items-center gap-2 mb-2">
+              <Send className="h-3 w-3 text-muted shrink-0" strokeWidth={2} />
+              <span className="text-[9px] text-muted tracking-[0.14em] font-medium font-mono uppercase">
+                Drafted reply
+              </span>
+            </div>
+            <p className="text-[12.5px] text-ink/90 leading-relaxed">
+              Johnny — yes, will get the signed copy over before EOD. Friday 2pm works for me,
+              I&apos;ll send a calendar invite. Looking forward to it.
+            </p>
+          </div>
+
+          <div className="relative w-fit opacity-75 pointer-events-none select-none" aria-hidden>
+            <MousePointer2
+              className="absolute -top-4 right-0 h-10 w-10 text-ink/40 pointer-events-none z-10"
+              fill="currentColor"
+              strokeWidth={1.5}
+            />
+            <button
+              type="button"
+              tabIndex={-1}
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-white px-[18px] py-2.5 rounded-lg btn-primary-cta cursor-default"
+            >
+              <Send className="h-3.5 w-3.5" strokeWidth={2} />
+              Send
+            </button>
           </div>
         </div>
 
-        <div className="relative">
-          <div
-            className="rounded-xl border border-white/[0.06] p-[18px] mb-3.5"
-            style={{ background: "#181714" }}
-          >
-            <div className="mb-2.5">
-              <span
-                className="inline-block text-[10px] tracking-widest px-2 py-1 rounded"
-                style={{
-                  fontFamily: mono,
-                  background: "rgba(96,165,250,0.12)",
-                  color: "#93C5FD",
-                }}
-              >
-                NEEDS REPLY
-              </span>
-            </div>
-
-            <div
-              className="text-[15px] font-medium text-[#FAFAF7] mb-1 tracking-tight"
-              style={{ fontFamily: title }}
-            >
-              Sequoia term sheet — respond by EOD
-            </div>
-            <div className="text-[10px] text-[#6B6862] tracking-widest mb-3" style={{ fontFamily: mono }}>
-              JOHNNY PORKENS &nbsp;·&nbsp; 2 HOURS AGO
-            </div>
-            <div className="h-px bg-white/[0.05] mb-3" />
-
-            <p className="text-[13px] text-[#B8B5AD] leading-relaxed mb-4">
-              Johnny confirmed terms and wants a signed copy by end of day. He&apos;s also asking if
-              you can hop on a call Friday to discuss the board seat.
-            </p>
-
-            <div
-              className="rounded-[10px] p-3.5 mb-3.5 accent-border-default accent-shadow-sm"
-              style={{ ["--accent-fill" as string]: "#181714" }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Send className="h-3 w-3 text-accent shrink-0" strokeWidth={2} />
-                <span
-                  className="text-[9px] text-accent tracking-[0.14em] font-medium"
-                  style={{ fontFamily: mono }}
-                >
-                  DRAFTED REPLY
-                </span>
-              </div>
-              <p className="text-[12.5px] text-[#E8E5DD] leading-relaxed">
-                Johnny — yes, will get the signed copy over before EOD. Friday 2pm works for me,
-                I&apos;ll send a calendar invite. Looking forward to it.
-              </p>
-            </div>
-
-            <div className="relative w-fit opacity-75 pointer-events-none select-none" aria-hidden>
-              <MousePointer2
-                className="absolute -top-4 right-0 h-10 w-10 text-white opacity-80 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] pointer-events-none z-10"
-                fill="white"
-                strokeWidth={1.5}
-              />
-              <button
-                type="button"
-                tabIndex={-1}
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-black px-[18px] py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 cursor-default"
-              >
-                <Send className="h-3.5 w-3.5" strokeWidth={2} />
-                Send
-              </button>
-            </div>
+        <div className="rounded-xl border border-border bg-canvas/30 p-4 mb-4 opacity-60">
+          <div className="flex items-center gap-2.5 mb-2">
+            <span className="text-[10px] tracking-widest font-mono text-muted uppercase">
+              Ready · drafted 6:47 am
+            </span>
           </div>
-
-          <FadedCard blur="1.2px" opacity={0.95}>
-            <div className="flex items-center gap-2.5 mb-2">
-              <span
-                className="text-[10px] tracking-widest px-2 py-0.5 rounded"
-                style={{
-                  fontFamily: mono,
-                  background: "rgba(115,160,90,0.14)",
-                  color: "#93C26E",
-                }}
-              >
-                READY
-              </span>
-              <span className="text-[10px] text-[#6B6862] tracking-widest" style={{ fontFamily: mono }}>
-                DRAFTED 6:47 AM
-              </span>
-            </div>
-            <div className="text-sm font-medium text-[#FAFAF7] mb-1" style={{ fontFamily: title }}>
-              Status update → engineering leads
-            </div>
-            <p className="text-xs text-[#8A877F] leading-snug">
-              Friday&apos;s progress recap drafted from your commits and standups. Ready for approval.
-            </p>
-          </FadedCard>
-
-          <FadedCard blur="1.55px" opacity={1} className="!mb-0">
-            <SkeletonLines />
-          </FadedCard>
+          <p className="text-sm font-medium text-ink mb-1">
+            Status update → engineering leads
+          </p>
+          <p className="text-xs text-muted leading-snug">
+            Friday&apos;s progress recap drafted from your commits and standups. Ready for approval.
+          </p>
         </div>
-      </div>
-    </div>
-  );
-}
 
-function SkeletonLines() {
-  return (
-    <div>
-      <div className="flex items-center gap-2.5 mb-2.5">
-        <div className="w-[70px] h-3.5 bg-white/[0.08] rounded" />
-        <div className="w-[110px] h-2.5 bg-white/[0.05] rounded-sm" />
-      </div>
-      <div className="h-3 w-[78%] bg-white/[0.09] rounded mb-2" />
-      <div className="w-[92%] h-2 bg-white/[0.05] rounded-sm mb-1" />
-      <div className="w-[65%] h-2 bg-white/[0.05] rounded-sm" />
-    </div>
-  );
-}
-
-function FadedCard({
-  children,
-  blur,
-  opacity,
-  className = "",
-}: {
-  children: React.ReactNode;
-  blur: string;
-  opacity: number;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`rounded-xl border border-white/[0.06] p-3.5 mb-3.5 ${className}`}
-      style={{
-        background: "#181714",
-        filter: `blur(${blur})`,
-        opacity,
-      }}
-    >
-      {children}
+        <div className="rounded-xl border border-border bg-canvas/20 p-4 opacity-40">
+          <div className="flex items-center gap-2.5 mb-2.5">
+            <div className="w-[70px] h-3.5 bg-border rounded" />
+            <div className="w-[110px] h-2.5 bg-border/70 rounded-sm" />
+          </div>
+          <div className="h-3 w-[78%] bg-border rounded mb-2" />
+          <div className="w-[92%] h-2 bg-border/70 rounded-sm mb-1" />
+          <div className="w-[65%] h-2 bg-border/70 rounded-sm" />
+        </div>
+      </UiMockFrame>
     </div>
   );
 }

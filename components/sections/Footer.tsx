@@ -2,119 +2,94 @@ import { BuiltByNerodyn } from "@/components/ui/built-by-nerodyn";
 import { DiracLogoMark } from "@/components/ui/dirac-logo";
 import { SIGNUP_URL } from "@/lib/urls";
 
+const footerLinks = [
+  { href: "mailto:peter@dirac.app", label: "peter@dirac.app" },
+  { href: "/#why", label: "Why" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "https://twitter.com", label: "X / Twitter", external: true },
+] as const;
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-[1fr_auto] gap-10 items-start">
-          {/* Left */}
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2">
+    <footer className="bg-white border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <div className="flex items-center gap-2.5 mb-4">
               <DiracLogoMark size="sm" />
-              <span
-                className="text-sm font-semibold text-white/60"
-                style={{ fontFamily: "var(--font-space-grotesk)" }}
-              >
-                Dirac
-              </span>
+              <span className="font-serif text-base font-medium text-ink">Dirac</span>
             </div>
-            <p className="text-xs text-white/25 max-w-[240px] leading-relaxed">
+            <p className="text-sm text-muted leading-relaxed">
               The email agent built around decisions, not busywork.
             </p>
-            <p className="text-xs text-white/18 mt-2">
+            <p className="text-xs text-muted/80 mt-6">
               © {year} Dirac. All rights reserved.
             </p>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <a
-                href="https://twelve.tools"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-badge"
-              >
-                <img
-                  src="https://twelve.tools/badge1-dark.svg"
-                  alt="Featured on Twelve Tools"
-                  width={200}
-                  height={54}
-                  className="h-7 w-auto"
-                />
-              </a>
-              <a
-                href="https://www.producthunt.com/products/dirac-3?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-dirac-4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-badge"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1167329&theme=dark&t=1781598802634"
-                  alt="Dirac - The AI inbox that briefs founders every morning | Product Hunt"
-                  width={250}
-                  height={54}
-                  className="h-7 w-auto"
-                />
-              </a>
-            </div>
           </div>
 
-          {/* Right */}
-          <div className="flex flex-col gap-3 items-start md:items-end">
+          <div className="flex flex-col gap-6 md:items-end md:text-right">
             <a
               href={SIGNUP_URL}
-              className="inline-flex h-9 items-center justify-center rounded-full btn-primary px-5 text-xs font-semibold mb-1"
+              className="text-sm font-medium text-ink hover:text-muted transition-colors duration-200 w-fit"
             >
-              Get Started
+              Get started →
             </a>
-            <div className="flex flex-col md:items-end gap-2.5">
-              <a
-                href="mailto:peter@dirac.app"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                peter@dirac.app
-              </a>
-              <a
-                href="#why"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                Why
-              </a>
-              <a
-                href="#faq"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                FAQ
-              </a>
-              <a
-                href="/pricing"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                Pricing
-              </a>
-              <a
-                href="/privacy"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                Privacy
-              </a>
-              <a
-                href="/terms"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                Terms
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-white/30 hover:text-white/60 transition-colors duration-200"
-              >
-                X / Twitter
-              </a>
-            </div>
+            <nav
+              className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2 md:justify-end"
+              aria-label="Footer"
+            >
+              {footerLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  {...("external" in link && link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="text-sm text-muted hover:text-ink transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
-        <div className="mt-10 pt-8 border-t border-white/5 flex justify-center">
+
+        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="https://twelve.tools"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-badge"
+            >
+              <img
+                src="https://twelve.tools/badge1-dark.svg"
+                alt="Featured on Twelve Tools"
+                width={200}
+                height={54}
+                className="h-6 w-auto"
+              />
+            </a>
+            <a
+              href="https://www.producthunt.com/products/dirac-3?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-dirac-4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-badge"
+            >
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1167329&theme=dark&t=1781598802634"
+                alt="Dirac - The AI inbox that briefs founders every morning | Product Hunt"
+                width={250}
+                height={54}
+                className="h-6 w-auto"
+              />
+            </a>
+          </div>
           <BuiltByNerodyn />
         </div>
       </div>

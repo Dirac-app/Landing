@@ -1,4 +1,5 @@
 import { SectionEyebrow } from "@/components/ui/section-eyebrow";
+import { SectionShell } from "@/components/ui/section-shell";
 import { FaqAccordion, type FaqItem } from "@/components/ui/faq-accordion";
 
 const faqItems: FaqItem[] = [
@@ -53,23 +54,16 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-const titleFont = { fontFamily: "var(--font-space-grotesk)" };
-
 export function FAQ() {
   return (
-    <section className="py-20 md:py-36 overflow-x-hidden" id="faq">
-      <div className="max-w-3xl mx-auto px-6">
-        <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
+    <SectionShell id="faq" tone="canvas" containerClassName="max-w-3xl">
+      <SectionEyebrow className="mb-6">FAQ</SectionEyebrow>
 
-        <h2
-          className="text-3xl md:text-4xl font-semibold text-white leading-tight tracking-tight mb-10 md:mb-12"
-          style={titleFont}
-        >
-          Common questions
-        </h2>
+      <h2 className="font-serif text-3xl md:text-4xl font-medium text-ink leading-[1.1] tracking-tight mb-10 md:mb-12">
+        Common questions
+      </h2>
 
-        <FaqAccordion items={faqItems} />
-      </div>
-    </section>
+      <FaqAccordion items={faqItems} />
+    </SectionShell>
   );
 }
