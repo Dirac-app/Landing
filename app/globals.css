@@ -120,6 +120,18 @@ h3,
   font-variation-settings: "SOFT" 90, "WONK" 0;
 }
 
+/* Liquid-glass nav pill — active after scrolling past hero */
+.nav-shell--glass {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 1px 2px rgba(31, 27, 24, 0.04),
+    0 8px 32px rgba(31, 27, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
 /* Reusable solid panel */
 .panel-card {
   border: 1px solid var(--color-border);
@@ -140,28 +152,41 @@ h3,
  * Tweak layout by editing the variables on #hero below.
  */
 #hero {
-  /* Image anchor — 50% / lower scale shows sky + lake together */
-  --hero-bg-pos-x: 50%;
-  --hero-bg-pos-y: 48%;
-  /* < 1 zooms out (shows more scene); 1 = standard cover */
-  --hero-bg-scale: 0.68;
   --hero-brightness: 1.05;
 
   /*
-   * Asymmetric fade-to-white mask.
-   * Ellipse is wide + biased toward the top, so: top/upper-center stays
-   * near-solid, sides fade in gently, and the bottom (outside/edge of the
-   * ellipse) reaches transparent soonest — combined with the linear bottom
-   * fade below for a heavier, gradual dissolve at the base.
+   * Triple mask (radial ∩ linear ∩ lower-radial).
+   * Main radial: large circle anchored at top — protects top corners.
+   * Lower radial: extra dissolve on lower sides + bottom only.
+   * Linear: gradual bottom weighting (raise stops = fade bottom later).
    */
-  --hero-mask-size-x: 95%;
-  --hero-mask-size-y: 80%;
-  --hero-mask-x: 50%;
-  --hero-mask-y: 35%;
-  --hero-mask-stop-solid: 40%;   /* fully visible up to here */
-  --hero-mask-stop-mid: 75%;     /* partial fade checkpoint */
-  --hero-mask-mid-opacity: 0.4;  /* opacity at the mid checkpoint */
-  --hero-mask-stop-out: 100%;    /* fully transparent by here */
+  --hero-radial-size-x: 72%;
+  --hero-radial-size-y: 128%;
+  --hero-radial-x: 50%;
+  --hero-radial-y: 0%;
+  --hero-radial-stop-solid: 46%;
+  --hero-radial-stop-mid: 74%;
+  --hero-radial-mid-opacity: 0.2;
+  --hero-radial-stop-out: 100%;
+
+  /* Lower-side boost — transparent core near bottom pulls fade inward on lower flanks */
+  --hero-lower-radial-size-x: 68%;
+  --hero-lower-radial-size-y: 40%;
+  --hero-lower-radial-x: 50%;
+  --hero-lower-radial-y: 94%;
+  --hero-lower-radial-stop-clear: 44%;
+  --hero-lower-radial-stop-mid: 60%;
+  --hero-lower-radial-mid-opacity: 0.4;
+  --hero-lower-radial-stop-solid: 72%;
+
+  /* Linear layer — raise stops / opacity to fade bottom later & show more water */
+  --hero-linear-stop-solid: 70%;
+  --hero-linear-stop-mid: 96%;
+  --hero-linear-mid-opacity: 0.84;
+  --hero-linear-stop-out: 100%;
+
+  /* Target: scene fully white ~this fraction into demo panel height (0.55–0.65) */
+  --hero-bottom-fade-fraction: 0.6;
 
   /* Demo panel — width, shadow & distance from bottom of hero */
   --hero-demo-max-width: min(72rem, 80vw);
@@ -170,67 +195,76 @@ h3,
   --hero-demo-shadow: 0 4px 20px rgba(31, 27, 24, 0.1), 0 16px 48px rgba(31, 27, 24, 0.08);
   --hero-demo-bottom: clamp(2rem, 5vh, 3.5rem);
   --hero-demo-gap-top: clamp(2.75rem, calc(4vh + 20px), 3.75rem);
-
-  /*
-   * Bottom fade (heaviest edge) — image reads as fully gone by roughly
-   * this fraction into the demo panel's height (0.55–0.65 recommended).
-   */
-  --hero-bottom-fade-fraction: 0.6;
-  --hero-bottom-fade-stop: calc(
-    var(--hero-demo-bottom) + var(--hero-demo-height-est) * var(--hero-bottom-fade-fraction)
-  );
-  /* How far up from the very base the fade starts turning solid white */
-  --hero-bottom-fade-base: max(0px, calc(var(--hero-demo-bottom) * 0.25));
 }
 
 .hero-bg-layer {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   pointer-events: none;
 }
 
 #hero .hero-bg-image {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: calc(100% / var(--hero-bg-scale));
-  height: calc(100% / var(--hero-bg-scale));
-  transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: var(--hero-bg-pos-x) var(--hero-bg-pos-y);
+  object-position: center;
   filter: brightness(var(--hero-brightness));
-  -webkit-mask-image: radial-gradient(
-    ellipse var(--hero-mask-size-x) var(--hero-mask-size-y) at var(--hero-mask-x)
-      var(--hero-mask-y),
-    #000 var(--hero-mask-stop-solid),
-    rgba(0, 0, 0, var(--hero-mask-mid-opacity)) var(--hero-mask-stop-mid),
-    transparent var(--hero-mask-stop-out)
-  );
-  mask-image: radial-gradient(
-    ellipse var(--hero-mask-size-x) var(--hero-mask-size-y) at var(--hero-mask-x)
-      var(--hero-mask-y),
-    #000 var(--hero-mask-stop-solid),
-    rgba(0, 0, 0, var(--hero-mask-mid-opacity)) var(--hero-mask-stop-mid),
-    transparent var(--hero-mask-stop-out)
-  );
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse var(--hero-radial-size-x) var(--hero-radial-size-y) at var(--hero-radial-x)
+        var(--hero-radial-y),
+      #000 var(--hero-radial-stop-solid),
+      rgba(0, 0, 0, var(--hero-radial-mid-opacity)) var(--hero-radial-stop-mid),
+      transparent var(--hero-radial-stop-out)
+    ),
+    linear-gradient(
+      to bottom,
+      #000 var(--hero-linear-stop-solid),
+      rgba(0, 0, 0, var(--hero-linear-mid-opacity)) var(--hero-linear-stop-mid),
+      transparent var(--hero-linear-stop-out)
+    ),
+    radial-gradient(
+      ellipse var(--hero-lower-radial-size-x) var(--hero-lower-radial-size-y) at
+        var(--hero-lower-radial-x) var(--hero-lower-radial-y),
+      transparent 0%,
+      transparent var(--hero-lower-radial-stop-clear),
+      rgba(0, 0, 0, var(--hero-lower-radial-mid-opacity)) var(--hero-lower-radial-stop-mid),
+      #000 var(--hero-lower-radial-stop-solid)
+    );
+  mask-image:
+    radial-gradient(
+      ellipse var(--hero-radial-size-x) var(--hero-radial-size-y) at var(--hero-radial-x)
+        var(--hero-radial-y),
+      #000 var(--hero-radial-stop-solid),
+      rgba(0, 0, 0, var(--hero-radial-mid-opacity)) var(--hero-radial-stop-mid),
+      transparent var(--hero-radial-stop-out)
+    ),
+    linear-gradient(
+      to bottom,
+      #000 var(--hero-linear-stop-solid),
+      rgba(0, 0, 0, var(--hero-linear-mid-opacity)) var(--hero-linear-stop-mid),
+      transparent var(--hero-linear-stop-out)
+    ),
+    radial-gradient(
+      ellipse var(--hero-lower-radial-size-x) var(--hero-lower-radial-size-y) at
+        var(--hero-lower-radial-x) var(--hero-lower-radial-y),
+      transparent 0%,
+      transparent var(--hero-lower-radial-stop-clear),
+      rgba(0, 0, 0, var(--hero-lower-radial-mid-opacity)) var(--hero-lower-radial-stop-mid),
+      #000 var(--hero-lower-radial-stop-solid)
+    );
+  -webkit-mask-composite: source-in, source-in;
+  mask-composite: intersect, intersect;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-}
-
-/* Extra heavy, gradual dissolve at the very bottom, layered on top of the image */
-.hero-bg-bottom-fade {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to top,
-    #ffffff 0px,
-    #ffffff var(--hero-bottom-fade-base),
-    transparent var(--hero-bottom-fade-stop)
-  );
 }
 
 .hero-content {

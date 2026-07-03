@@ -16,7 +16,6 @@ export function Hero() {
           className="hero-bg-image"
           fetchPriority="high"
         />
-        <div className="hero-bg-bottom-fade" />
       </div>
 
       <div className="hero-content mx-auto w-full max-w-[90rem]">
