@@ -1,48 +1,112 @@
-import { SectionEyebrow } from "@/components/ui/section-eyebrow";
-import { SectionShell } from "@/components/ui/section-shell";
+import { Pinstripe } from "@/components/ui/pinstripe";
+import { SectionLabel } from "@/components/ui/section-label";
+import { SiteContainer } from "@/components/ui/site-container";
 
 const steps = [
   {
-    number: "01",
-    headline: "Connect Gmail or Outlook.",
-    body: "One OAuth flow. Read-only access to your inbox. No passwords stored, no data sold.",
+    step: "Step 1",
+    label: "Connect",
+    title: "Link your inbox in minutes",
+    body: "OAuth with Gmail or Outlook. No passwords stored. Dirac starts reading with the access you approve.",
+    visual: "inbox",
   },
   {
-    number: "02",
-    headline: "Dirac learns your voice.",
-    body:
-      "It reads your sent mail — not to store it, but to build a private model of how you write. The model lives with you.",
+    step: "Step 2",
+    label: "Learn",
+    title: "It learns how you write",
+    body: "Dirac studies your sent mail privately — tone, vocabulary, and how you close loops — so drafts sound like you.",
+    visual: "voice",
   },
   {
-    number: "03",
-    headline: "Wake up to your brief.",
-    body:
-      "Every morning, before you've touched your keyboard, Dirac has read, triaged, and drafted. Open the brief. Tap send on what you agree with. Move on.",
+    step: "Step 3",
+    label: "Decide",
+    title: "Wake up to a brief",
+    body: "Priorities, summaries, and ready-to-send replies land before your first meeting. You approve. Nothing sends alone.",
+    visual: "brief",
   },
-];
+] as const;
+
+function StepVisual({ kind }: { kind: (typeof steps)[number]["visual"] }) {
+  if (kind === "inbox") {
+    return (
+      <div className="flex h-full flex-col justify-center gap-2 rounded-xl bg-canvas-deep p-5">
+        <div className="rounded-lg border border-border bg-white px-3 py-2 text-xs text-muted shadow-sm">
+          you@company.com
+        </div>
+        <div className="rounded-lg border border-ink bg-ink px-3 py-2 text-center text-xs font-semibold text-white">
+          Connect inbox
+        </div>
+      </div>
+    );
+  }
+
+  if (kind === "voice") {
+    return (
+      <div className="flex h-full flex-col justify-center gap-2 rounded-xl bg-canvas-deep p-5">
+        {["Short and direct", "Warm but crisp", "Always close the loop"].map((line) => (
+          <div
+            key={line}
+            className="rounded-lg border border-border bg-white px-3 py-2 text-xs text-ink shadow-sm"
+          >
+            {line}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex h-full flex-col justify-center gap-2 rounded-xl bg-canvas-deep p-5">
+      <div className="rounded-lg border border-border bg-white p-3 shadow-sm">
+        <p className="text-[10px] font-medium uppercase tracking-wider text-muted">
+          Morning brief
+        </p>
+        <p className="mt-1 text-xs font-medium text-ink">3 need you · 2 drafts ready</p>
+      </div>
+      <div className="rounded-lg border border-border bg-white px-3 py-2 text-xs text-muted shadow-sm">
+        Investor follow-up — draft ready
+      </div>
+    </div>
+  );
+}
 
 export function HowItWorks() {
   return (
-    <SectionShell id="how-it-works" tone="panel">
-      <SectionEyebrow className="mb-6">How it works</SectionEyebrow>
+    <>
+      <Pinstripe />
+      <section id="how" className="bg-white py-20 md:py-28">
+        <SiteContainer>
+          <SectionLabel>How it works</SectionLabel>
+          <h2 className="mt-4 max-w-2xl font-serif text-3xl font-medium leading-[1.12] tracking-tight text-ink md:text-5xl">
+            Up and running in minutes. Not days of tool setup.
+          </h2>
 
-      <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] font-medium text-ink leading-[1.1] tracking-tight mb-14 md:mb-20 max-w-2xl">
-        Up and running in one <span className="editorial-highlight">afternoon</span>.
-      </h2>
-
-      <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-        {steps.map((step) => (
-          <article key={step.number} className="panel-card p-7 md:p-8 flex flex-col">
-            <span className="text-sm text-muted font-mono tabular-nums tracking-widest mb-6">
-              {step.number}
-            </span>
-            <h3 className="font-serif text-xl font-medium text-ink mb-4 leading-snug">
-              {step.headline}
-            </h3>
-            <p className="text-muted text-sm leading-relaxed">{step.body}</p>
-          </article>
-        ))}
-      </div>
-    </SectionShell>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {steps.map((item) => (
+              <article
+                key={item.step}
+                className="flex flex-col overflow-hidden rounded-2xl border border-border bg-white"
+              >
+                <div className="relative aspect-[4/3] border-b border-border p-4">
+                  <span className="absolute left-4 top-4 rounded-md border border-border bg-white px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-muted">
+                    {item.step}
+                  </span>
+                  <div className="h-full pt-8">
+                    <StepVisual kind={item.visual} />
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                    {item.label}
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+    </>
   );
 }

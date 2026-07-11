@@ -1,98 +1,83 @@
-import { BuiltByNerodyn } from "@/components/ui/built-by-nerodyn";
-import { DiracLogoMark } from "@/components/ui/dirac-logo";
+import { Button } from "@/components/ui/button";
+import { SiteContainer } from "@/components/ui/site-container";
 import { SIGNUP_URL } from "@/lib/urls";
 
-const footerLinks = [
-  { href: "mailto:peter@dirac.app", label: "peter@dirac.app" },
-  { href: "/#why", label: "Why" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
-  { href: "https://twitter.com", label: "X / Twitter", external: true },
+const columns = [
+  {
+    title: "Support",
+    links: [
+      { href: "/terms", label: "Terms of Service" },
+      { href: "/privacy", label: "Privacy Policy" },
+      { href: "/#faq", label: "FAQ" },
+    ],
+  },
+  {
+    title: "Product",
+    links: [
+      { href: "/#product", label: "Features" },
+      { href: "/#how", label: "How it works" },
+      { href: "/#pricing", label: "Pricing" },
+      { href: "/pricing", label: "Compare plans" },
+    ],
+  },
+  {
+    title: "Contact",
+    links: [
+      { href: "mailto:peter@dirac.app", label: "peter@dirac.app" },
+      { href: SIGNUP_URL, label: "Get started" },
+    ],
+  },
 ] as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
-        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+    <footer className="border-t border-border bg-white">
+      <SiteContainer className="py-16 md:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div className="max-w-sm">
-            <div className="flex items-center gap-2.5 mb-4">
-              <DiracLogoMark size="sm" />
-              <span className="font-serif text-base font-medium text-ink">Dirac</span>
+            <span className="inline-flex rounded-full border border-border px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink">
+              Dirac
+            </span>
+            <p className="mt-5 font-serif text-2xl font-medium leading-snug tracking-tight text-ink md:text-3xl">
+              Your AI email agent, built for founders who live in their inbox.
+            </p>
+            <div className="mt-6">
+              <Button href={SIGNUP_URL} size="sm">
+                Get started
+              </Button>
             </div>
-            <p className="text-sm text-muted leading-relaxed">
-              The email agent built around decisions, not busywork.
-            </p>
-            <p className="text-xs text-muted/80 mt-6">
-              © {year} Dirac. All rights reserved.
-            </p>
           </div>
 
-          <div className="flex flex-col gap-6 md:items-end md:text-right">
-            <a
-              href={SIGNUP_URL}
-              className="text-sm font-medium text-ink hover:text-muted transition-colors duration-200 w-fit"
-            >
-              Get started →
-            </a>
-            <nav
-              className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2 md:justify-end"
-              aria-label="Footer"
-            >
-              {footerLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  {...("external" in link && link.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="text-sm text-muted hover:text-ink transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          <div className="grid gap-8 sm:grid-cols-3">
+            {columns.map((column) => (
+              <div key={column.title}>
+                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                  {column.title}
+                </p>
+                <ul className="mt-4 space-y-2.5">
+                  {column.links.map((link) => (
+                    <li key={link.href + link.label}>
+                      <a
+                        href={link.href}
+                        className="text-sm text-ink/75 transition-colors hover:text-ink"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="https://twelve.tools"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-badge"
-            >
-              <img
-                src="https://twelve.tools/badge1-dark.svg"
-                alt="Featured on Twelve Tools"
-                width={200}
-                height={54}
-                className="h-6 w-auto"
-              />
-            </a>
-            <a
-              href="https://www.producthunt.com/products/dirac-3?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-dirac-4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-badge"
-            >
-              <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1167329&theme=dark&t=1781598802634"
-                alt="Dirac - The AI inbox that briefs founders every morning | Product Hunt"
-                width={250}
-                height={54}
-                className="h-6 w-auto"
-              />
-            </a>
-          </div>
-          <BuiltByNerodyn />
+        <div className="mt-14 flex flex-col gap-3 border-t border-border pt-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} Dirac. All rights reserved.</p>
+          <p>Built for decisions, not busywork.</p>
         </div>
-      </div>
+      </SiteContainer>
     </footer>
   );
 }

@@ -14,24 +14,23 @@ type FaqAccordionProps = {
 };
 
 export function FaqAccordion({ items }: FaqAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="border-t border-border">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (
-          <div
-            key={item.question}
-            className="panel-card overflow-hidden"
-          >
+          <div key={item.question} className="border-b border-border">
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              className="flex w-full items-center justify-between gap-4 py-5 text-left"
               aria-expanded={isOpen}
             >
-              <span className="text-sm font-medium text-ink">{item.question}</span>
+              <span className="text-sm font-medium text-ink md:text-base">
+                {item.question}
+              </span>
               <ChevronDown
                 className={cn(
                   "h-4 w-4 shrink-0 text-muted transition-transform duration-200",
@@ -40,8 +39,8 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               />
             </button>
             {isOpen && (
-              <div className="px-6 pb-5 border-t border-border">
-                <p className="text-sm text-muted leading-relaxed pt-5">{item.answer}</p>
+              <div className="pb-5 pr-8">
+                <p className="text-sm leading-relaxed text-muted">{item.answer}</p>
               </div>
             )}
           </div>

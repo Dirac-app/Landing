@@ -4,7 +4,11 @@ import { Resend } from "resend";
 import { buildWaitlistWelcomeEmail, getWaitlistFromAddress } from "@/lib/waitlist-email";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) return null;
+  return new Resend(apiKey);
+}
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -62,11 +66,14 @@ export async function POST(req: NextRequest) {
   }
 
   let confirmationEmailSent = false;
+  const resend = getResend();
 
-  if (process.env.RESEND_API_KEY) {
+  if (!resend) {
+    console.error("[waitlist] RESEND_API_KEY is missing — welcome email was not sent.");
+  } else {
     try {
       const { subject, html, text } = buildWaitlistWelcomeEmail();
-      const { error: emailError } = await resend.emails.send({
+      const { data, error: emailError } = await resend.emails.send({
         from: getWaitlistFromAddress(),
         to: email,
         subject,
@@ -79,12 +86,11 @@ export async function POST(req: NextRequest) {
         console.error("[waitlist] Resend error:", emailError);
       } else {
         confirmationEmailSent = true;
+        console.info("[waitlist] Welcome email sent:", data?.id ?? "ok");
       }
     } catch (emailError) {
-      console.error("[waitlist] Resend error:", emailError);
+      console.error("[waitlist] Resend exception:", emailError);
     }
-  } else {
-    console.warn("[waitlist] RESEND_API_KEY not set — skipping welcome email.");
   }
 
   if (inserted?.id && confirmationEmailSent) {

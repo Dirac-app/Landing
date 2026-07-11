@@ -76,6 +76,7 @@ export function HeroWaitlistCta() {
   const [answers, setAnswers] = useState<Answers>({ ...EMPTY_ANSWERS });
   const [errorMsg, setErrorMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   const currentQuestion = QUESTIONS[surveyStep];
   const isLastQuestion = surveyStep === QUESTIONS.length - 1;
@@ -123,9 +124,13 @@ export function HeroWaitlistCta() {
         }),
       });
 
-      const data = (await res.json()) as { error?: string };
+      const data = (await res.json()) as {
+        error?: string;
+        confirmationEmailSent?: boolean;
+      };
 
       if (res.ok) {
+        setEmailSent(Boolean(data.confirmationEmailSent));
         setPhase("done");
         return;
       }
@@ -153,7 +158,9 @@ export function HeroWaitlistCta() {
           <div className="text-left">
             <p className="text-sm font-medium text-ink">You&apos;re on the list.</p>
             <p className="text-sm text-muted">
-              Check your inbox — we sent a note to {email.trim()}.
+              {emailSent
+                ? `Check your inbox — a note is on its way to ${email.trim()}.`
+                : "We'll be in touch soon."}
             </p>
           </div>
         </div>

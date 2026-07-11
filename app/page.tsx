@@ -1,12 +1,13 @@
 import { PageFrame } from "@/components/ui/page-frame";
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
-import { Solutions } from "@/components/sections/Solutions";
-import { Product } from "@/components/sections/Product";
-import { SocialProof } from "@/components/sections/SocialProof";
-import { WhyUs } from "@/components/sections/WhyUs";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Problem } from "@/components/sections/Problem";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Features } from "@/components/sections/Features";
+import { Compare } from "@/components/sections/Compare";
+import { Pricing } from "@/components/sections/Pricing";
 import { FAQ } from "@/components/sections/FAQ";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
@@ -14,14 +15,15 @@ export default function Home() {
     <>
       <PageFrame>
         <Nav />
-        <main className="overflow-x-hidden">
+        <main className="overflow-x-clip">
           <Hero />
-          <Solutions />
-          <Product />
-          <SocialProof />
-          <WhyUs />
-          <FinalCTA />
+          <Problem />
+          <HowItWorks />
+          <Features />
+          <Compare />
+          <Pricing />
           <FAQ />
+          <FinalCTA />
         </main>
       </PageFrame>
       <Footer />

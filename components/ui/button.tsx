@@ -7,36 +7,32 @@ export type ButtonSize = "sm" | "md" | "lg";
 export type ButtonTone = "light" | "dark";
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "h-9 px-5 text-sm rounded-xl",
-  md: "h-12 px-8 text-sm rounded-xl",
-  lg: "h-12 px-10 text-base rounded-xl",
+  sm: "h-9 px-4 text-xs rounded-md",
+  md: "h-11 px-5 text-xs rounded-md",
+  lg: "h-12 px-6 text-sm rounded-md",
 };
 
 const variantClasses: Record<ButtonVariant, Record<ButtonTone, string>> = {
   primary: {
-    light:
-      "bg-[linear-gradient(180deg,var(--color-accent)_0%,#ee8a66_100%)] text-white shadow-[0_2px_12px_rgba(232,113,76,0.28)] hover:bg-accent-hover hover:bg-none",
-    dark:
-      "bg-[linear-gradient(180deg,var(--color-accent)_0%,#ee8a66_100%)] text-white shadow-[0_2px_12px_rgba(232,113,76,0.28)] hover:bg-accent-hover hover:bg-none",
+    light: "bg-ink text-white hover:bg-ink/90",
+    dark: "bg-white text-ink hover:bg-white/90",
   },
   secondary: {
-    light:
-      "border border-border bg-panel text-ink hover:text-muted",
-    dark:
-      "border border-white/12 bg-transparent text-white/70 hover:text-white/90",
+    light: "border border-ink/20 bg-transparent text-ink hover:border-ink/40",
+    dark: "border border-white/30 bg-transparent text-white hover:border-white/50",
   },
   ghost: {
     light: "text-muted hover:text-ink",
-    dark: "text-white/50 hover:text-white/85",
+    dark: "text-white/60 hover:text-white",
   },
   link: {
     light: "text-muted hover:text-ink underline-offset-4 hover:underline",
-    dark: "text-white/45 hover:text-white/75 underline-offset-4 hover:underline",
+    dark: "text-white/50 hover:text-white/80 underline-offset-4 hover:underline",
   },
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 font-sans font-semibold transition-colors duration-200 disabled:pointer-events-none disabled:opacity-40";
+  "inline-flex items-center justify-center gap-2 font-sans font-semibold uppercase tracking-[0.08em] transition-colors duration-200 disabled:pointer-events-none disabled:opacity-40";
 
 export function buttonClassName({
   variant = "primary",
@@ -51,7 +47,7 @@ export function buttonClassName({
 }) {
   return cn(
     baseClasses,
-    variant === "link" || variant === "ghost" ? "h-auto px-0" : sizeClasses[size],
+    variant === "link" || variant === "ghost" ? "h-auto px-0 normal-case tracking-normal" : sizeClasses[size],
     variantClasses[variant][tone],
     className,
   );

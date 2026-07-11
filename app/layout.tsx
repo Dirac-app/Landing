@@ -48,17 +48,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "dirac - your intelligent email",
+  title: "Dirac — the email agent built around decisions",
   description:
-    "Dirac is an AI email client that reads your inbox, learns your voice, and delivers a morning brief with summaries, priorities, and ready-to-send drafts.",
+    "Dirac reads your inbox overnight, surfaces what needs you, and drafts replies in your voice — so mornings start with decisions, not triage.",
   icons: {
     icon: "/dirac-logo.png",
     apple: "/dirac-logo.png",
   },
   openGraph: {
-    title: "dirac - your intelligent email",
+    title: "Dirac — the email agent built around decisions",
     description:
-      "Wake up to a morning brief with email summaries, action items, and ready-to-send replies — written in your voice.",
+      "Wake up to a morning brief with priorities, summaries, and ready-to-send replies — written in your voice.",
     siteName: "Dirac",
   },
 };

@@ -13,37 +13,34 @@
   --animate-aurora: aurora 60s linear infinite;
 
   /*
-   * Brand refresh — light editorial palette
-   *
-   * Accent coral is used sparingly: primary CTAs, "needs you" / attention
-   * markers, and the occasional editorial highlight only. It is NOT a section
-   * background or decorative sprinkle. Most of the page is canvas + ink +
-   * white panels. Warm near-black ink — never pure #000.
+   * Runlo-inspired editorial system
+   * White canvas, near-black ink, yellow highlighter accents, black CTAs.
    */
-  --color-canvas: #faf8f5;
-  --color-canvas-deep: #f3efea;
+  --color-canvas: #ffffff;
+  --color-canvas-deep: #f7f7f5;
   --color-panel: #ffffff;
-  --color-ink: #1f1b18;
-  --color-muted: #6b635c;
-  --color-accent: #e8714c;
-  --color-accent-hover: #d85f3a;
-  --color-accent-soft: #f8e5dc;
-  --color-border: #ece7e1;
+  --color-ink: #111111;
+  --color-muted: #6b6b6b;
+  --color-accent: #ffe500;
+  --color-accent-hover: #f0d800;
+  --color-accent-soft: #fff9c4;
+  --color-border: #e8e8e6;
+  --color-good: #16a34a;
+  --color-bad: #dc2626;
 
-  /* Legacy dark theme — remove after component refresh */
-  --color-background: #000000;
-  --color-foreground: #ffffff;
-  --color-muted-fg: #737373;
-  --color-border-subtle: rgba(255, 255, 255, 0.04);
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-raised: rgba(255, 255, 255, 0.05);
-  --color-accent-deep: #d85f3a;
-  --color-accent-light: #f09578;
-  --color-accent-muted: rgba(232, 113, 76, 0.12);
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-muted-fg: #6b6b6b;
+  --color-border-subtle: rgba(17, 17, 17, 0.06);
+  --color-surface: #f7f7f5;
+  --color-surface-raised: #ffffff;
+  --color-accent-deep: #e6cf00;
+  --color-accent-light: #fff066;
+  --color-accent-muted: rgba(255, 229, 0, 0.35);
 
   /*
    * Typography
-   * font-serif → Fraunces (h1–h3, hero/marketing headlines)
+   * font-serif → Fraunces (headlines, highlight quotes)
    * font-sans  → Inter (body, UI, buttons, labels)
    */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -65,9 +62,9 @@
   --violet-200: #ddd6fe;
   --blue-400: #60a5fa;
 
-  /* RGB channels for layered glows — matches brand accent (#E8714C) */
-  --accent-rgb: 232, 113, 76;
-  --accent-light-rgb: 240, 149, 120;
+  /* RGB channels for layered glows — yellow highlighter */
+  --accent-rgb: 255, 229, 0;
+  --accent-light-rgb: 255, 240, 102;
 
   /* Solid-tone variants — all derived from orange-500 */
   --accent-border-subtle: rgba(var(--accent-rgb), 0.2);
@@ -91,7 +88,9 @@
 
 html {
   background-color: #ffffff;
-  overflow-x: hidden;
+  /* clip (not hidden) — hidden forces overflow-y:auto on this box, which
+     becomes the nearest scroll container and breaks position:sticky below it */
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -107,7 +106,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -120,16 +119,22 @@ h3,
   font-variation-settings: "SOFT" 90, "WONK" 0;
 }
 
-/* Liquid-glass nav pill — active after scrolling past hero */
-.nav-shell--glass {
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow:
-    0 1px 2px rgba(31, 27, 24, 0.04),
-    0 8px 32px rgba(31, 27, 24, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
+/* Sticky nav — white bar with hairline border */
+.nav-shell {
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-shell--scrolled {
+  border-bottom-color: var(--color-border);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.03);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 /* Reusable solid panel */
@@ -137,14 +142,33 @@ h3,
   border: 1px solid var(--color-border);
   background: var(--color-panel);
   border-radius: 1rem;
-  box-shadow:
-    0 1px 2px rgba(31, 27, 24, 0.04),
-    0 8px 24px rgba(31, 27, 24, 0.06);
+  box-shadow: none;
 }
 
-/* Editorial coral highlight — max one phrase per section heading */
+/* Yellow highlighter — key phrases and callout lines */
 .editorial-highlight {
-  color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.08em 0.22em;
+  line-height: 1.45;
+}
+
+/* Subtle vertical pinstripe section divider */
+.pinstripe-band {
+  height: 2.75rem;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(17, 17, 17, 0.045) 0,
+    rgba(17, 17, 17, 0.045) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  background-color: #fafaf9;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 /*
@@ -165,36 +189,41 @@ h3,
   --hero-radial-x: 50%;
   --hero-radial-y: 0%;
   --hero-radial-stop-solid: 46%;
-  --hero-radial-stop-mid: 74%;
-  --hero-radial-mid-opacity: 0.2;
+  --hero-radial-stop-mid: 82%;
+  --hero-radial-mid-opacity: 0.14;
   --hero-radial-stop-out: 100%;
 
   /* Lower-side boost — transparent core near bottom pulls fade inward on lower flanks */
   --hero-lower-radial-size-x: 68%;
   --hero-lower-radial-size-y: 40%;
   --hero-lower-radial-x: 50%;
-  --hero-lower-radial-y: 94%;
-  --hero-lower-radial-stop-clear: 44%;
-  --hero-lower-radial-stop-mid: 60%;
-  --hero-lower-radial-mid-opacity: 0.4;
-  --hero-lower-radial-stop-solid: 72%;
+  --hero-lower-radial-y: 96%;
+  --hero-lower-radial-stop-clear: 52%;
+  --hero-lower-radial-stop-mid: 68%;
+  --hero-lower-radial-mid-opacity: 0.3;
+  --hero-lower-radial-stop-solid: 80%;
 
   /* Linear layer — raise stops / opacity to fade bottom later & show more water */
-  --hero-linear-stop-solid: 70%;
-  --hero-linear-stop-mid: 96%;
-  --hero-linear-mid-opacity: 0.84;
+  --hero-linear-stop-solid: 78%;
+  --hero-linear-stop-mid: 99%;
+  --hero-linear-mid-opacity: 0.72;
   --hero-linear-stop-out: 100%;
 
   /* Target: scene fully white ~this fraction into demo panel height (0.55–0.65) */
-  --hero-bottom-fade-fraction: 0.6;
+  --hero-bottom-fade-fraction: 0.65;
 
   /* Demo panel — width, shadow & distance from bottom of hero */
   --hero-demo-max-width: min(72rem, 80vw);
   --hero-demo-width: min(80vw, 72rem);
   --hero-demo-height-est: calc(var(--hero-demo-width) * 9 / 16);
   --hero-demo-shadow: 0 4px 20px rgba(31, 27, 24, 0.1), 0 16px 48px rgba(31, 27, 24, 0.08);
-  --hero-demo-bottom: clamp(2rem, 5vh, 3.5rem);
+  --hero-demo-bottom: clamp(4rem, 10vh, 7rem);
   --hero-demo-gap-top: clamp(2.75rem, calc(4vh + 20px), 3.75rem);
+}
+
+/* Hero word accent — pre-Runlo coral text highlight */
+.hero-highlight {
+  color: #e8714c;
 }
 
 .hero-bg-layer {
@@ -319,6 +348,19 @@ h3,
   }
 }
 
+/* Scroll-driven feature stage crossfade */
+.features-stage-layer {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .features-stage-layer {
+    will-change: auto;
+    transform: none !important;
+  }
+}
+
 /* Defer layout/paint for below-fold sections during scroll */
 main section:not(#hero) {
   content-visibility: auto;
@@ -334,29 +376,27 @@ main section:not(#hero) {
   background-clip: text;
 }
 
-/* Primary CTA — coral, white text, barely perceptible warm gradient */
+/* Primary CTA — solid black */
 .btn-primary-cta,
 .btn-accent,
 .btn-orange {
-  background: linear-gradient(180deg, var(--color-accent) 0%, #ee8a66 100%);
+  background: var(--color-ink);
   color: #ffffff;
   font-family: var(--font-sans);
   font-weight: 600;
-  box-shadow: 0 2px 12px rgba(232, 113, 76, 0.28);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn-primary-cta:hover,
 .btn-accent:hover,
 .btn-orange:hover {
-  background: var(--color-accent-hover);
-  box-shadow: 0 2px 12px rgba(216, 95, 58, 0.32);
+  background: #2a2a2a;
 }
 
-/* Secondary — ink/muted, hairline border, no coral */
+/* Secondary — outline */
 .btn-secondary {
-  border: 1px solid var(--color-border);
-  background: var(--color-panel);
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: transparent;
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-weight: 600;
@@ -364,7 +404,7 @@ main section:not(#hero) {
 }
 
 .btn-secondary:hover {
-  color: var(--color-muted);
+  border-color: rgba(17, 17, 17, 0.4);
 }
 
 .btn-secondary-dark {
