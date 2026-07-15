@@ -33,6 +33,21 @@ export function Nav() {
     if (scrolled) setMobileOpen(false);
   }, [scrolled]);
 
+  const logoClass = cn(
+    "font-serif text-[1.15rem] font-medium tracking-tight transition-colors duration-300",
+    scrolled ? "text-ink" : "text-white",
+  );
+
+  const linkClass = cn(
+    "text-sm font-medium transition-colors duration-300",
+    scrolled ? "text-ink/70 hover:text-ink" : "text-white/85 hover:text-white",
+  );
+
+  const menuButtonClass = cn(
+    "transition-colors duration-300 md:hidden",
+    scrolled ? "text-ink/70 hover:text-ink" : "text-white/85 hover:text-white",
+  );
+
   return (
     <nav
       className={cn(
@@ -42,29 +57,29 @@ export function Nav() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
         <a href="/" className="shrink-0" aria-label="Dirac home">
-          <span className="font-serif text-[1.15rem] font-medium tracking-tight text-ink">
-            Dirac
-          </span>
+          <span className={logoClass}>Dirac</span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-ink/70 transition-colors hover:text-ink"
-            >
+            <a key={link.href} href={link.href} className={linkClass}>
               {link.label}
             </a>
           ))}
-          <Button href={SIGNUP_URL} size="sm">
+          <Button
+            href={SIGNUP_URL}
+            size="sm"
+            className={cn(
+              !scrolled && "bg-white text-ink hover:bg-white/90",
+            )}
+          >
             Get started
           </Button>
         </div>
 
         <button
           type="button"
-          className="text-ink/70 transition-colors hover:text-ink md:hidden"
+          className={menuButtonClass}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -74,19 +89,33 @@ export function Nav() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-border bg-white px-5 py-4 md:hidden">
+        <div
+          className={cn(
+            "border-t px-5 py-4 md:hidden",
+            scrolled
+              ? "border-border bg-white"
+              : "border-white/20 bg-black/25 backdrop-blur-md",
+          )}
+        >
           <div className="flex flex-col gap-3">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="py-1 text-sm font-medium text-ink/80"
+                className={cn(linkClass, "py-1")}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <Button href={SIGNUP_URL} size="sm" className="mt-2 w-full">
+            <Button
+              href={SIGNUP_URL}
+              size="sm"
+              className={cn(
+                "mt-2 w-full",
+                !scrolled && "bg-white text-ink hover:bg-white/90",
+              )}
+            >
               Get started
             </Button>
           </div>

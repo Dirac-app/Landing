@@ -1,10 +1,8 @@
 import { Check, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Pinstripe } from "@/components/ui/pinstripe";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SiteContainer } from "@/components/ui/site-container";
-import { SIGNUP_URL } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 
 const plans = [
@@ -84,14 +82,6 @@ export function Pricing() {
                   </span>
                 </p>
                 <p className="mt-2 text-xs text-muted">{plan.trial}</p>
-
-                <Button
-                  href={SIGNUP_URL}
-                  variant={plan.featured ? "primary" : "secondary"}
-                  className="mt-6 w-full normal-case tracking-normal"
-                >
-                  Start trial
-                </Button>
 
                 <div className="mt-8">
                   <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted">

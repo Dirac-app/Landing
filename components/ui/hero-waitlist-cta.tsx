@@ -201,9 +201,11 @@ export function HeroWaitlistCta() {
       </div>
 
       {errorMsg && phase === "email" ? (
-        <p className="mt-2.5 text-left text-sm text-red-600/80">{errorMsg}</p>
+        <p className="mt-2.5 text-center text-sm text-red-200">{errorMsg}</p>
       ) : (
-        <p className="mt-3 text-sm text-muted">Join the waitlist — early access rolling out soon.</p>
+        <p className="mt-3 text-center text-sm text-white/75">
+          Join the waitlist — early access rolling out soon.
+        </p>
       )}
 
       {phase === "survey" && currentQuestion ? (
