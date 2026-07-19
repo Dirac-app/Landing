@@ -3,9 +3,7 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { SIGNUP_URL } from "@/lib/urls";
 
 const SCROLL_THRESHOLD = 12;
 
@@ -66,15 +64,6 @@ export function Nav() {
               {link.label}
             </a>
           ))}
-          <Button
-            href={SIGNUP_URL}
-            size="sm"
-            className={cn(
-              !scrolled && "bg-white text-ink hover:bg-white/90",
-            )}
-          >
-            Get started
-          </Button>
         </div>
 
         <button
@@ -108,16 +97,6 @@ export function Nav() {
                 {link.label}
               </a>
             ))}
-            <Button
-              href={SIGNUP_URL}
-              size="sm"
-              className={cn(
-                "mt-2 w-full",
-                !scrolled && "bg-white text-ink hover:bg-white/90",
-              )}
-            >
-              Get started
-            </Button>
           </div>
         </div>
       )}

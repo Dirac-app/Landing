@@ -30,7 +30,7 @@ export function FinalCTA() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button href={SIGNUP_URL}>
-                Get started
+                Join waitlist
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
               </Button>
               <Button

@@ -29,7 +29,7 @@ export function Problem() {
 
         <div className="mt-10">
           <Button href={SIGNUP_URL}>
-            Get started
+            Join waitlist
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
           </Button>
         </div>

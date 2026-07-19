@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/ui/site-container";
 import { SIGNUP_URL } from "@/lib/urls";
 
@@ -24,7 +23,7 @@ const columns = [
     title: "Contact",
     links: [
       { href: "mailto:peter@dirac.app", label: "peter@dirac.app" },
-      { href: SIGNUP_URL, label: "Get started" },
+      { href: SIGNUP_URL, label: "Join waitlist" },
     ],
   },
 ] as const;
@@ -43,11 +42,6 @@ export function Footer() {
             <p className="mt-5 font-serif text-2xl font-medium leading-snug tracking-tight text-ink md:text-3xl">
               Your AI email agent, built for founders who live in their inbox.
             </p>
-            <div className="mt-6">
-              <Button href={SIGNUP_URL} size="sm">
-                Get started
-              </Button>
-            </div>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-3">
